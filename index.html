@@ -5,6 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pace Jewelers · Greenville, S.C. · Since 1948</title>
 <meta name="description" content="Family-owned Greenville jeweler since 1948. Watch repair, ring resizing, custom jewelry. Book an appointment online.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JewelryStore",
+  "name": "Pace Jewelers",
+  "alternateName": "Pace Jewelers Inc.",
+  "url": "https://www.pacejewelers.com/",
+  "telephone": "+18642323436",
+  "foundingDate": "1948",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1250 Pendleton Street",
+    "addressLocality": "Greenville",
+    "addressRegion": "SC",
+    "postalCode": "29611",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.8473722,
+    "longitude": -82.42845
+  },
+  "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM",
+  "sameAs": [
+    "https://www.pacejewelers.com/",
+    "https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "10:00",
+      "closes": "17:30"
+    }
+  ],
+  "areaServed": "Greenville, SC"
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -206,6 +244,17 @@
   .hours td:last-child{text-align:right;color:var(--ink);font-weight:500}
   .hours tr.closed td{color:#8ea0b8 !important;font-weight:400}
 
+  .reviews .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+  .reviews p{color:var(--ink-soft);margin-top:18px;max-width:38em}
+  .reviews .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .review-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px 32px;text-align:center}
+  .stars{position:relative;display:inline-block;font-size:1.35rem;letter-spacing:.14em;line-height:1}
+  .stars-base{color:#d5e0ee}
+  .stars-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;white-space:nowrap;color:#f5b301}
+  .review-card .score{font-family:var(--display);font-size:4.4rem;line-height:1;margin-top:14px}
+  .review-card .where{color:var(--ink-soft);margin-top:8px}
+  .review-card .where a{color:var(--accent);font-weight:600;text-decoration:none}
+
   footer{background:var(--dark);color:#9aafc9;padding:44px 0;font-size:.85rem}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
   footer .brand .logo{height:34px}
@@ -214,7 +263,7 @@
     nav ul{display:none;position:absolute;top:76px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid var(--line)}
     nav ul.open{display:flex}
     .menu-toggle{display:block}
-    .hero .wrap,.booking .wrap,.visit .wrap,.tl-item{grid-template-columns:1fr}
+    .hero .wrap,.booking .wrap,.visit .wrap,.reviews .wrap,.tl-item{grid-template-columns:1fr}
     .booking aside{position:static}
     .tl-item:nth-child(even) .tl-text{order:0}
     .tl-text{padding:0}
@@ -255,6 +304,7 @@
         <li><a href="#story">Our Story</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#archive">The Archive</a></li>
+        <li><a href="#reviews">Reviews</a></li>
         <li><a href="#visit">Visit</a></li>
         <li><a href="#book" class="btn sm">Book Appointment</a></li>
       </ul>
@@ -487,7 +537,7 @@
         <!-- STEP 2 -->
         <div class="pane" data-step="2">
           <h3>Pick a day</h3>
-          <p class="sub">Appointments Tuesday through Friday. Same-day? Give us a call.</p>
+          <p class="sub">Appointments Monday through Friday. Same-day? Give us a call.</p>
           <div class="cal-head"><button type="button" id="prevM" aria-label="Previous month">‹</button><b id="calTitle"></b><button type="button" id="nextM" aria-label="Next month">›</button></div>
           <div class="cal" id="cal"></div>
           <div class="slot-wrap">
@@ -520,6 +570,7 @@
             <h3>Thank you, <span id="cName"></span>.</h3>
             <p class="sub" style="margin-top:8px">Your request for <b id="cService"></b> on <b id="cWhen"></b> is in. We'll be in touch shortly to confirm.</p>
             <p class="ref">REF · <span id="cRef"></span></p>
+            <p class="sub" style="margin-top:18px">After your visit, <a href="https://search.google.com/local/writereview?placeid=ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">a Google review</a> helps the next neighbor in Greenville find the shop.</p>
             <p style="margin-top:22px"><button type="button" class="btn ghost sm" id="again">Book another</button></p>
           </div>
         </div>
@@ -536,13 +587,13 @@
       <h3 style="font-size:1.8rem;margin-top:6px">Visit the shop</h3>
       <p>1250 Pendleton Street<br>Greenville, SC 29611</p>
       <p style="margin-top:10px">In the Village of West Greenville. On-street parking out front.</p>
-      <p style="margin-top:18px"><a class="btn ghost sm" href="https://maps.google.com/?q=Pace+Jewelers+1250+Pendleton+St+Greenville+SC" target="_blank" rel="noopener">Get Directions</a></p>
+      <p style="margin-top:18px"><a class="btn ghost sm" href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Get Directions</a></p>
     </div>
     <div>
       <span class="label">Hours</span>
       <h3 style="font-size:1.8rem;margin-top:6px">When we're open</h3>
       <table class="hours">
-        <tr class="closed"><td>Monday</td><td>Closed</td></tr>
+        <tr><td>Monday</td><td>10:00 – 5:30</td></tr>
         <tr><td>Tuesday</td><td>10:00 – 5:30</td></tr>
         <tr><td>Wednesday</td><td>10:00 – 5:30</td></tr>
         <tr><td>Thursday</td><td>10:00 – 5:30</td></tr>
@@ -555,6 +606,29 @@
       <h3 style="font-size:1.8rem;margin-top:6px">Call or stop in</h3>
       <p><a href="tel:+18642323436" style="font-family:var(--display);font-size:1.6rem;text-decoration:none;color:var(--accent)">(864) 232-3436</a></p>
       <p style="margin-top:12px">A proud member of Jewelers of America and an A+ rated, BBB accredited business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div>
+      <span class="label">On Google</span>
+      <h2>Tell Greenville how we did</h2>
+      <p>Reviews live on Google, under your name. That is what shows up when someone nearby searches for a jeweler, a watch repair, or a ring resize. It takes about a minute, and it points the next customer to this counter.</p>
+      <div class="actions">
+        <a class="btn" href="https://search.google.com/local/writereview?placeid=ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Leave a Google review</a>
+        <a class="btn ghost" href="https://search.google.com/local/reviews?placeid=ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Read the reviews</a>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars" role="img" aria-label="4.8 out of 5 on Google">
+        <span class="stars-base" aria-hidden="true">★★★★★</span>
+        <span class="stars-fill" aria-hidden="true">★★★★★</span>
+      </div>
+      <div class="score">4.8</div>
+      <p class="where">Google rating for <a href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Pace Jewelers Inc.</a></p>
     </div>
   </div>
 </section>
@@ -574,7 +648,7 @@
    Payload is POSTed as JSON.
    ============================================================ */
 const BOOKING_ENDPOINT = "";
-const OPEN_DAYS = [2,3,4,5];           // Tue–Fri (0 = Sun)
+const OPEN_DAYS = [1,2,3,4,5];         // Mon–Fri (0 = Sun)
 const OPEN_MIN = 10*60, CLOSE_MIN = 17*60+30; // 10:00–5:30
 const SLOT_STEP = 30;                  // minutes
 const MIN_LEAD_DAYS = 1;               // earliest bookable = tomorrow
