@@ -59,6 +59,14 @@
   .photo .img{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius);background:#d9d6cf}
   .photo .img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08);transition:transform .8s ease,filter .6s}
   .photo:hover .img img{transform:scale(1.03)}
+  .photo.ill .img{display:flex;align-items:center;justify-content:center}
+  .photo.ill .img img{filter:none;object-fit:contain;width:86%;height:86%}
+  .photo.ill.bleed .img img{width:100%;height:100%;object-fit:cover}
+  .photo .img.stage-paper{background:#fff}
+  .photo .img.stage-yellow{background:#fff675}
+  .photo .img.stage-mist{background:#f2f2f2}
+  .photo .img.stage-pink{background:#f6aecd}
+  .gem-ribbon{height:188px;background:#8fd0ef url("images/diamond-pattern.png") center/cover no-repeat}
   .photo figcaption{margin-top:12px;font-size:.8rem;color:var(--ink-soft);display:flex;gap:10px;align-items:center}
   .photo figcaption::before{content:"";width:18px;height:1px;background:var(--accent)}
   .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;
@@ -221,6 +229,7 @@
     .topbar .wrap{justify-content:center;text-align:center}
     .est .label{display:none}
     .gallery .photo:nth-child(1){grid-row:auto}
+    .gem-ribbon{height:120px}
   }
 </style>
 </head>
@@ -270,19 +279,23 @@
       </div>
     </div>
     <div class="hero-photos">
-      <figure class="photo tilt-l">
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo · Original storefront</span></div></div>
-        <figcaption>The shop in its early years</figcaption>
+      <figure class="photo ill">
+        <div class="img stage-paper">
+          <img src="images/brilliant-diamond.png" width="1057" height="914" alt="Line illustration of a brilliant-cut diamond in blue and pink">
+        </div>
+        <figcaption>Blue and pink brilliant</figcaption>
       </figure>
-      <figure class="photo tilt-r">
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo · At the bench</span></div></div>
-        <figcaption>At the watchmaker's bench</figcaption>
+      <figure class="photo ill">
+        <div class="img stage-yellow">
+          <img src="images/brilliant-ruby.png" width="994" height="859" alt="Line illustration of a pink ruby">
+        </div>
+        <figcaption>A ruby on yellow</figcaption>
       </figure>
     </div>
   </div>
 </section>
+
+<div class="gem-ribbon" role="img" aria-label="Repeating pattern of blue diamond illustrations"></div>
 
 <!-- ================= STORY ================= -->
 <section class="story" id="story">
@@ -301,10 +314,11 @@
           <h3>The doors open</h3>
           <p>The Pace family starts a jewelry business in Greenville, built on watch work, fine jewelry and knowing customers by name.</p>
         </div>
-        <figure class="photo tilt-r">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div class="img"><div class="ph"><span>Archive photo · 1940s</span></div></div>
-          <figcaption>Founding years</figcaption>
+        <figure class="photo ill bleed">
+          <div class="img">
+            <img src="images/emeralds-white.jpg" width="1800" height="1382" alt="Pattern of green emerald illustrations on white" loading="lazy">
+          </div>
+          <figcaption>Emeralds, still the center of the case</figcaption>
         </figure>
       </div>
       <div class="tl-item">
@@ -313,10 +327,11 @@
           <h3>A second shop on Main Street</h3>
           <p>For 42 years, a Pace Jewelers store served Pickens from its Main Street storefront, until longtime jeweler Riley Garrick retired and the family brought everything home to Greenville.</p>
         </div>
-        <figure class="photo tilt-l">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div class="img"><div class="ph"><span>Archive photo · Pickens store</span></div></div>
-          <figcaption>Main Street, Pickens</figcaption>
+        <figure class="photo ill">
+          <div class="img stage-mist">
+            <img src="images/brilliant-anaglyph.png" width="862" height="738" alt="Diamond outline drawn in overlapping blue and pink" loading="lazy">
+          </div>
+          <figcaption>One stone, seen twice</figcaption>
         </figure>
       </div>
       <div class="tl-item">
@@ -325,10 +340,11 @@
           <h3>Fourth generation, same counter</h3>
           <p>Now in the Village of West Greenville, just off downtown, Pace still does what it has always done: engagement rings, custom pieces, and watch and jewelry repair done right in the shop.</p>
         </div>
-        <figure class="photo tilt-r">
-          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div class="img"><div class="ph"><span>Photo · Pendleton St. today</span></div></div>
-          <figcaption>1250 Pendleton Street</figcaption>
+        <figure class="photo ill">
+          <div class="img stage-paper">
+            <img src="images/mascot-jeweler.png" width="1200" height="1229" alt="Cartoon diamond jeweler in a top hat, with a loupe and a cane" loading="lazy">
+          </div>
+          <figcaption>Loupe, hat, and a steady hand</figcaption>
         </figure>
       </div>
     </div>
@@ -371,24 +387,48 @@
 <section class="archive" id="archive">
   <div class="wrap">
     <div class="center">
-      <span class="label">From the Family Album</span>
+      <span class="label">From the Bench</span>
       <h2>The Archive</h2>
       <div class="ornament">◆</div>
-      <p class="intro">Seventy-five years of counters, customers and Greenville streets. A few photographs from the family album.</p>
+      <p class="intro">Drawings from the bench: brilliants, emeralds, and rubies, the way we like to see a stone.</p>
     </div>
     <div class="gallery">
-      <figure class="photo"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo 1</span></div></div><figcaption>The founders behind the counter</figcaption></figure>
-      <figure class="photo"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo 2</span></div></div><figcaption>An early window display</figcaption></figure>
-      <figure class="photo"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo 3</span></div></div><figcaption>The watch repair bench</figcaption></figure>
-      <figure class="photo"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo 4</span></div></div><figcaption>A vintage newspaper advertisement</figcaption></figure>
-      <figure class="photo"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo 5</span></div></div><figcaption>The Pickens store on Main Street</figcaption></figure>
-      <figure class="photo"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <div class="img"><div class="ph"><span>Archive photo 6</span></div></div><figcaption>Four generations of the Pace family</figcaption></figure>
+      <figure class="photo ill">
+        <div class="img stage-pink">
+          <img src="images/mascot-wave.png" width="1200" height="1200" alt="Cartoon diamond waving as it walks past a few sparks" loading="lazy">
+        </div>
+        <figcaption>A brilliant, on the way in</figcaption>
+      </figure>
+      <figure class="photo ill bleed">
+        <div class="img">
+          <img src="images/emeralds-yellow.jpg" width="1800" height="1382" alt="Pattern of green emerald illustrations on yellow" loading="lazy">
+        </div>
+        <figcaption>Emeralds on a bright ground</figcaption>
+      </figure>
+      <figure class="photo ill">
+        <div class="img stage-paper">
+          <img src="images/brilliant-diamond.png" width="1057" height="914" alt="Line illustration of a brilliant-cut diamond in blue and pink" loading="lazy">
+        </div>
+        <figcaption>The brilliant, up close</figcaption>
+      </figure>
+      <figure class="photo ill">
+        <div class="img stage-yellow">
+          <img src="images/brilliant-ruby.png" width="994" height="859" alt="Line illustration of a pink ruby" loading="lazy">
+        </div>
+        <figcaption>Ruby, facet by facet</figcaption>
+      </figure>
+      <figure class="photo ill bleed">
+        <div class="img">
+          <img src="images/emeralds-white.jpg" width="1800" height="1382" alt="Pattern of green emerald illustrations on white" loading="lazy">
+        </div>
+        <figcaption>Emeralds on the cloth</figcaption>
+      </figure>
+      <figure class="photo ill">
+        <div class="img stage-mist">
+          <img src="images/brilliant-anaglyph.png" width="862" height="738" alt="Diamond outline drawn in overlapping blue and pink" loading="lazy">
+        </div>
+        <figcaption>One stone, drawn twice</figcaption>
+      </figure>
     </div>
     <p class="gallery-note">Have an old photo of the shop, or a piece you bought here decades ago? <a href="mailto:info@pacejewelers.example">We'd love to see it.</a></p>
   </div>
