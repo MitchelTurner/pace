@@ -144,6 +144,10 @@
   .story-intro{max-width:760px;margin:0 auto 80px;text-align:center}
   .story-intro p{color:var(--ink-soft);font-size:1.12rem;margin-top:22px;text-align:center !important}
   .dropcap::first-letter{all:unset}
+  .shop-film{margin:8px auto 72px;max-width:1040px}
+  .shop-film video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:20px;background:#062047;box-shadow:0 30px 60px -36px rgba(6,32,71,.55)}
+  .shop-film figcaption{margin-top:14px;font-size:.85rem;color:var(--ink-soft);display:flex;gap:10px;align-items:center;justify-content:center}
+  .shop-film figcaption::before{content:"";width:18px;height:1px;background:var(--accent)}
   .timeline{max-width:1100px;margin:0 auto;display:grid;gap:20px}
   .tl-item{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;background:var(--card);border-radius:20px;padding:28px;border:1px solid var(--line)}
   .tl-item:nth-child(even) .tl-text{order:2}
@@ -384,6 +388,13 @@
       <div class="ornament">◆</div>
       <p class="dropcap" style="text-align:left">The Pace family opened the doors in 1948, and the business has been handed down through four generations since. A lot has changed in Greenville over those years. The way we work hasn't: honest advice, fair prices, and repairs done in-house by hands that have been doing them for decades.</p>
     </div>
+
+    <figure class="shop-film">
+      <video controls playsinline preload="metadata" poster="images/family-counter-poster.jpg" width="1280" height="720">
+        <source src="videos/family-counter.mp4" type="video/mp4">
+      </video>
+      <figcaption>The family, behind the counter</figcaption>
+    </figure>
 
     <div class="timeline">
       <div class="tl-item">
