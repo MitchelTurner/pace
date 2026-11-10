@@ -127,6 +127,19 @@
   .hero-photos .photo:first-child .img{aspect-ratio:3/4}
   .hero-photos .photo:last-child{margin-bottom:56px}
   .hero-photos .photo:last-child .img{aspect-ratio:1}
+  .photo.family .img{overflow:hidden}
+  .photo.family .img img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;filter:none}
+  .tl-item .photo.family.wide .img{aspect-ratio:16/9}
+  .tl-item .photo.family.tall .img{aspect-ratio:3/4}
+  .hero-photos .photo.family.wide .img{aspect-ratio:16/10}
+  .hero-photos .photo.family.tall .img{aspect-ratio:3/4}
+  .hero-photos .photo.family.tall{margin-bottom:18px}
+  .photo.family.tall .img img{object-position:center 18%}
+  .album{display:grid;grid-template-columns:1.45fr .82fr;gap:22px;margin-top:56px;align-items:start}
+  .album .counter .img{aspect-ratio:16/9}
+  .album .bench .img{aspect-ratio:4/5}
+  .album .bench .img img{object-position:center 16%}
+  .archive .drawings{margin-top:72px}
 
   /* stats strip (story) */
   .story{background:var(--bg-2)}
@@ -162,7 +175,7 @@
   .gallery .photo:nth-child(1) .img{aspect-ratio:auto;height:100%;min-height:340px}
   .gallery .photo:nth-child(1){display:flex;flex-direction:column}
   .gallery .photo:nth-child(1) .img{flex:1}
-  .gallery .photo figcaption{color:#a9bdd6}
+  .archive .photo figcaption,.gallery .photo figcaption{color:#a9bdd6}
   .gallery .ph{background:linear-gradient(135deg,#12315f,#071833)}
   .gallery .ph span{background:rgba(255,255,255,.08);color:#a9bdd6}
   .gallery-note{margin-top:56px;text-align:center;color:#a9bdd6}
@@ -271,7 +284,7 @@
   }
   @media (max-width:600px){
     section{padding:80px 0}
-    .services-grid,.gallery,.choices,.row2{grid-template-columns:1fr}
+    .services-grid,.gallery,.album,.choices,.row2{grid-template-columns:1fr}
     .gallery .photo:nth-child(1){grid-column:auto}
     .slots{grid-template-columns:repeat(3,1fr)}
     .topbar .wrap{justify-content:center;text-align:center}
@@ -330,17 +343,17 @@
       </div>
     </div>
     <div class="hero-photos">
-      <figure class="photo ill">
-        <div class="img stage-paper">
-          <img src="images/brilliant-diamond.png" width="1057" height="914" alt="Line illustration of a brilliant-cut diamond in blue and pink">
+      <figure class="photo family wide">
+        <div class="img">
+          <img src="images/family-counter.webp" width="960" height="540" alt="Members of the Pace family standing behind the jewelry counter in the shop">
         </div>
-        <figcaption>Blue and pink brilliant</figcaption>
+        <figcaption>The family behind the counter</figcaption>
       </figure>
-      <figure class="photo ill">
-        <div class="img stage-yellow">
-          <img src="images/brilliant-ruby.png" width="994" height="859" alt="Line illustration of a pink ruby">
+      <figure class="photo family tall">
+        <div class="img">
+          <img src="images/family-bench.webp" width="1080" height="1280" alt="A younger jeweler at the bench, with an older jeweler standing beside him">
         </div>
-        <figcaption>A ruby on yellow</figcaption>
+        <figcaption>Two generations at the bench</figcaption>
       </figure>
     </div>
   </div>
@@ -365,11 +378,11 @@
           <h3>The doors open</h3>
           <p>The Pace family starts a jewelry business in Greenville, built on watch work, fine jewelry and knowing customers by name.</p>
         </div>
-        <figure class="photo ill bleed">
+        <figure class="photo family wide">
           <div class="img">
-            <img src="images/emeralds-white.jpg" width="1800" height="1382" alt="Pattern of green emerald illustrations on white" loading="lazy">
+            <img src="images/family-counter.webp" width="960" height="540" alt="Members of the Pace family standing behind the jewelry counter in the shop" loading="lazy">
           </div>
-          <figcaption>Emeralds, still the center of the case</figcaption>
+          <figcaption>Behind the counter</figcaption>
         </figure>
       </div>
       <div class="tl-item">
@@ -391,11 +404,11 @@
           <h3>Fourth generation, same counter</h3>
           <p>Now in the Village of West Greenville, just off downtown, Pace still does what it has always done: engagement rings, custom pieces, and watch and jewelry repair done right in the shop.</p>
         </div>
-        <figure class="photo ill">
-          <div class="img stage-paper">
-            <img src="images/mascot-jeweler.png" width="1200" height="1229" alt="Cartoon diamond jeweler in a top hat, with a loupe and a cane" loading="lazy">
+        <figure class="photo family tall">
+          <div class="img">
+            <img src="images/family-bench.webp" width="1080" height="1280" alt="A younger jeweler at the bench, with an older jeweler standing beside him" loading="lazy">
           </div>
-          <figcaption>Loupe, hat, and a steady hand</figcaption>
+          <figcaption>At the bench</figcaption>
         </figure>
       </div>
     </div>
@@ -438,11 +451,26 @@
 <section class="archive" id="archive">
   <div class="wrap">
     <div class="center">
-      <span class="label">From the Bench</span>
+      <span class="label">From the Family Album</span>
       <h2>The Archive</h2>
       <div class="ornament">◆</div>
-      <p class="intro">Drawings from the bench: brilliants, emeralds, and rubies, the way we like to see a stone.</p>
+      <p class="intro">Photographs the family kept: the counter where customers were known by name, and the bench where the work was done.</p>
     </div>
+    <div class="album">
+      <figure class="photo family counter">
+        <div class="img">
+          <img src="images/family-counter.webp" width="960" height="540" alt="Members of the Pace family standing behind the jewelry counter in the shop" loading="lazy">
+        </div>
+        <figcaption>The family behind the counter</figcaption>
+      </figure>
+      <figure class="photo family bench">
+        <div class="img">
+          <img src="images/family-bench.webp" width="1080" height="1280" alt="A younger jeweler at the bench, with an older jeweler standing beside him" loading="lazy">
+        </div>
+        <figcaption>Two generations at the bench</figcaption>
+      </figure>
+    </div>
+    <p class="intro drawings">Drawings from the bench, kept alongside the photographs.</p>
     <div class="gallery">
       <figure class="photo ill">
         <div class="img stage-pink">
