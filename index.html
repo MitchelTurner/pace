@@ -122,11 +122,17 @@
   .hero h1 em{font-style:italic;color:var(--accent)}
   .hero p.lead{font-size:1.1rem;color:var(--ink-soft);margin:26px 0 36px;max-width:32em}
   .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
-  .hero-photos{position:relative;height:min(640px,74vh);min-height:520px}
+  .hero-photos{position:relative;height:min(700px,78vh);min-height:560px}
   .hero-photos .photo{position:absolute;width:70%;margin:0;cursor:zoom-in;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
-  .hero-photos .photo .img{aspect-ratio:4/5;border-radius:18px;overflow:hidden;box-shadow:0 28px 50px -30px rgba(6,32,71,.55)}
-  .hero-photos .stack-a{top:0;left:0;width:78%;z-index:1;transform:rotate(-3deg)}
-  .hero-photos .stack-b{right:0;bottom:0;width:72%;z-index:2;transform:rotate(3.5deg)}
+  .hero-photos .photo .img{border-radius:18px;overflow:hidden;box-shadow:0 28px 50px -30px rgba(6,32,71,.55)}
+  .photo.vintage .img img{filter:none;object-fit:cover;width:100%;height:100%}
+  .hero-photos .photo.vintage .img{background:#fff;padding:10px}
+  .hero-photos .photo.vintage .img img{border-radius:8px}
+  .hero-photos .stack-a{top:0;left:0;width:94%;z-index:1;transform:rotate(-2.2deg)}
+  .hero-photos .stack-a .img{aspect-ratio:4/3}
+  .hero-photos .stack-b{right:0;bottom:0;width:46%;z-index:2;transform:rotate(3.4deg)}
+  .hero-photos .stack-b .img{aspect-ratio:4/5}
+  .hero-photos .stack-b .img img{object-position:center 28%}
   .hero-photos .photo.is-top{z-index:4}
   .timeline .photo{cursor:zoom-in}
   .hero-photos .photo:hover,.hero-photos .photo:focus-visible{z-index:5;transform:rotate(0deg) translateY(-12px) scale(1.05);box-shadow:0 36px 60px -28px rgba(6,32,71,.45)}
@@ -289,6 +295,9 @@
     nav ul.open{display:flex}
     .menu-toggle{display:block}
     .hero .wrap,.booking .wrap,.visit .wrap,.reviews .wrap,.tl-item{grid-template-columns:1fr}
+    .hero-photos{height:auto;min-height:0;margin-top:12px;padding-bottom:20%}
+    .hero-photos .stack-a{position:relative;width:100%;top:auto;left:auto}
+    .hero-photos .stack-b{width:36%}
     .booking aside{position:static}
     .tl-item:nth-child(even) .tl-text{order:0}
     .tl-text{padding:0}
@@ -296,9 +305,9 @@
   }
   @media (max-width:600px){
     section{padding:80px 0}
-    .hero-photos{height:420px;min-height:0;margin-top:8px}
-    .hero-photos .stack-a{width:82%}
-    .hero-photos .stack-b{width:74%}
+    .hero-photos{height:auto;min-height:0;margin-top:8px;padding-bottom:32%}
+    .hero-photos .stack-a{position:relative;width:100%;top:auto;left:auto}
+    .hero-photos .stack-b{width:50%}
     .services-grid,.gallery,.choices,.row2{grid-template-columns:1fr}
     .gallery .photo .img{min-height:0}
     .gallery .photo:nth-child(1) .img{aspect-ratio:4/3;min-height:0}
@@ -359,17 +368,17 @@
       </div>
     </div>
     <div class="hero-photos" id="heroStack">
-      <figure class="photo ill stack-a" tabindex="0" role="button" aria-label="Open the blue and pink brilliant">
-        <div class="img stage-paper">
-          <img src="images/brilliant-diamond.png" width="1057" height="914" alt="Line illustration of a brilliant-cut diamond in blue and pink">
+      <figure class="photo vintage stack-a" tabindex="0" role="button" aria-label="Open the 1966 counter photograph">
+        <div class="img">
+          <img src="images/shop-1966.webp" data-full="images/shop-1966-full.jpg" width="2000" height="1461" alt="Black and white photograph from 1966 of Pace Jewelers staff showing a customer a piece of jewelry at the counter">
         </div>
-        <figcaption>Blue and pink brilliant</figcaption>
+        <figcaption>The counter, 1966</figcaption>
       </figure>
-      <figure class="photo ill stack-b is-top" tabindex="0" role="button" aria-label="Open the ruby">
-        <div class="img stage-yellow">
-          <img src="images/brilliant-ruby.png" width="994" height="859" alt="Line illustration of a pink ruby">
+      <figure class="photo vintage stack-b is-top" tabindex="0" role="button" aria-label="Open two generations at the bench">
+        <div class="img">
+          <img src="images/family-bench.webp" width="1080" height="1280" alt="A younger jeweler at the bench, with an older jeweler standing beside him">
         </div>
-        <figcaption>A ruby on yellow</figcaption>
+        <figcaption>At the bench</figcaption>
       </figure>
     </div>
   </div>
@@ -859,7 +868,7 @@ const lightboxCap = lightbox.querySelector('figcaption');
 function openLightbox(fig){
   const img = fig.querySelector('img');
   const cap = fig.querySelector('figcaption');
-  lightboxImg.src = img.currentSrc || img.src;
+  lightboxImg.src = img.getAttribute('data-full') || img.currentSrc || img.src;
   lightboxImg.alt = img.alt;
   lightboxCap.textContent = cap ? cap.textContent : '';
   lightbox.hidden = false;
