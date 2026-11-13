@@ -36,20 +36,11 @@ window.PACE_TIMELINE = [
   },
   {
     title: "The family behind the counter",
-    image: "images/photos/family-counter.webp",
-    full: "images/photos/family-counter-scan.jpg",
-    width: 1800,
-    height: 1013,
+    image: "images/photos/family-counter-scan.jpg",
+    width: 2730,
+    height: 1536,
     alt: "Members of the Pace family standing behind the jewelry counter in the shop",
     caption: "Behind the counter"
-  },
-  {
-    title: "At the bench",
-    image: "images/photos/family-bench.webp",
-    width: 1080,
-    height: 1280,
-    alt: "A younger jeweler at the bench, with an older jeweler standing beside him",
-    caption: "Two generations at the bench"
   },
   {
     year: "Today",
