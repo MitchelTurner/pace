@@ -204,7 +204,11 @@
   .drawings-head .intro{margin-top:8px}
   .drawing-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:22px}
   .drawing-strip .photo{cursor:zoom-in}
-  .drawing-strip .photo .img{aspect-ratio:1;min-height:0;height:auto}
+  .drawing-strip .photo .img{aspect-ratio:1;min-height:0;height:auto;background:#000}
+  .drawing-strip .photo .img img{width:100%;height:100%;object-fit:cover;filter:none}
+  .drawing-strip .photo.wide{grid-column:span 2}
+  .drawing-strip .photo.wide .img{aspect-ratio:2.08/1}
+  .drawing-strip .photo.wide .img img{object-fit:contain}
   .drawing-strip figcaption{font-size:.72rem;line-height:1.35}
   .lightbox{position:fixed;inset:0;z-index:80;background:rgba(6,32,71,.86);display:grid;place-items:center;padding:48px 24px}
   .lightbox[hidden]{display:none}
@@ -323,7 +327,7 @@
     .tl-item{padding-bottom:40px}
     .services-grid,.gallery{grid-template-columns:1fr 1fr}
     .gallery.photos{grid-template-columns:1fr 1fr}
-    .drawing-strip{grid-template-columns:repeat(3,1fr)}
+    .drawing-strip{grid-template-columns:repeat(2,1fr)}
   }
   @media (max-width:600px){
     section{padding:80px 0}
@@ -474,45 +478,57 @@
     </div>
     <div class="gallery photos" id="photoArchive"></div>
     <div class="center drawings-head">
-      <span class="label">Drawings</span>
-      <p class="intro">A few from the bench.</p>
+      <span class="label">From the bench</span>
+      <p class="intro">A few of the rings.</p>
     </div>
     <div class="drawing-strip">
-      <figure class="photo ill zoom" tabindex="0" role="button">
-        <div class="img stage-pink">
-          <img src="images/drawings/mascot-wave.png" width="1200" height="1200" alt="Cartoon diamond waving as it walks past a few sparks" loading="lazy">
-        </div>
-        <figcaption>A brilliant, on the way in</figcaption>
-      </figure>
-      <figure class="photo ill bleed zoom" tabindex="0" role="button">
+      <figure class="photo vintage" tabindex="0" role="button">
         <div class="img">
-          <img src="images/drawings/emeralds-yellow.jpg" width="1800" height="1382" alt="Pattern of green emerald illustrations on yellow" loading="lazy">
+          <img src="images/portfolio/bridal-sets.jpg" width="600" height="600" alt="Two oval diamond bridal sets, one white metal and one rose gold, on a black background" loading="lazy">
         </div>
-        <figcaption>Emeralds on a bright ground</figcaption>
+        <figcaption>Oval bridal sets</figcaption>
       </figure>
-      <figure class="photo ill zoom" tabindex="0" role="button">
-        <div class="img stage-paper">
-          <img src="images/drawings/brilliant-diamond.png" width="1057" height="914" alt="Line illustration of a brilliant-cut diamond in blue and pink" loading="lazy">
-        </div>
-        <figcaption>The brilliant, up close</figcaption>
-      </figure>
-      <figure class="photo ill zoom" tabindex="0" role="button">
-        <div class="img stage-yellow">
-          <img src="images/drawings/brilliant-ruby.png" width="994" height="859" alt="Line illustration of a pink ruby" loading="lazy">
-        </div>
-        <figcaption>Ruby, facet by facet</figcaption>
-      </figure>
-      <figure class="photo ill bleed zoom" tabindex="0" role="button">
+      <figure class="photo vintage" tabindex="0" role="button">
         <div class="img">
-          <img src="images/drawings/emeralds-white.jpg" width="1800" height="1382" alt="Pattern of green emerald illustrations on white" loading="lazy">
+          <img src="images/portfolio/halo-band.jpg" width="700" height="699" alt="A round diamond halo ring resting on a white gold wedding band" loading="lazy">
         </div>
-        <figcaption>Emeralds on the cloth</figcaption>
+        <figcaption>Halo and a band</figcaption>
       </figure>
-      <figure class="photo ill zoom" tabindex="0" role="button">
-        <div class="img stage-mist">
-          <img src="images/drawings/brilliant-anaglyph.png" width="862" height="738" alt="Diamond outline drawn in overlapping blue and pink" loading="lazy">
+      <figure class="photo vintage" tabindex="0" role="button">
+        <div class="img">
+          <img src="images/portfolio/gold-stack.jpg" width="700" height="700" alt="A round diamond engagement ring stacked with a diamond band on a gold wedding band" loading="lazy">
         </div>
-        <figcaption>One stone, drawn twice</figcaption>
+        <figcaption>Round diamond, gold band</figcaption>
+      </figure>
+      <figure class="photo vintage" tabindex="0" role="button">
+        <div class="img">
+          <img src="images/portfolio/vintage-halo.jpg" width="700" height="700" alt="A vintage halo engagement ring on two white gold bands" loading="lazy">
+        </div>
+        <figcaption>Vintage halo</figcaption>
+      </figure>
+      <figure class="photo vintage wide" tabindex="0" role="button">
+        <div class="img">
+          <img src="images/portfolio/yellow-diamonds.jpg" width="682" height="328" alt="Three yellow diamond rings with diamond halos" loading="lazy">
+        </div>
+        <figcaption>Yellow diamonds</figcaption>
+      </figure>
+      <figure class="photo vintage wide" tabindex="0" role="button">
+        <div class="img">
+          <img src="images/portfolio/three-diamond-rings.jpg" width="700" height="337" alt="Three diamond rings: a cluster, an openwork marquise shape, and a cushion halo" loading="lazy">
+        </div>
+        <figcaption>Three diamond rings</figcaption>
+      </figure>
+      <figure class="photo vintage wide" tabindex="0" role="button">
+        <div class="img">
+          <img src="images/portfolio/three-shapes.jpg" width="700" height="288" alt="Three engagement rings with a round, a marquise, and an oval center" loading="lazy">
+        </div>
+        <figcaption>Round, marquise, and oval</figcaption>
+      </figure>
+      <figure class="photo vintage wide" tabindex="0" role="button">
+        <div class="img">
+          <img src="images/portfolio/three-bridal-sets.jpg" width="646" height="311" alt="Three diamond bridal sets: pear, cushion halo, and round with curved bands" loading="lazy">
+        </div>
+        <figcaption>Three bridal sets</figcaption>
       </figure>
     </div>
     <p class="gallery-note">Have an old photo of the shop, or a piece you bought here decades ago? <a href="mailto:pacejewelersinc@gmail.com">We'd love to see it.</a></p>
