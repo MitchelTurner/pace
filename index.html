@@ -967,7 +967,7 @@ lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbo
 lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
 document.addEventListener('keydown', e => { if(e.key === 'Escape' && !lightbox.hidden) closeLightbox(); });
 
-/* story timeline — entries live in timeline.js so a new photo is one upload plus one entry */
+/* story timeline is text. Photographs for the archive live in timeline.js. */
 function photoFigure(item){
   const fig = document.createElement('figure');
   fig.className = 'photo vintage';
@@ -1008,11 +1008,10 @@ const timelineList = document.getElementById('timeline');
     p.textContent = item.text;
     li.appendChild(p);
   }
-  if(item.image) li.appendChild(photoFigure(item));
   timelineList.appendChild(li);
 });
 const photoArchive = document.getElementById('photoArchive');
-(window.PACE_TIMELINE || []).filter(item => item.image).forEach(item => {
+(window.PACE_ARCHIVE || []).forEach(item => {
   photoArchive.appendChild(photoFigure(item));
 });
 

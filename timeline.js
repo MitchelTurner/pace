@@ -1,16 +1,13 @@
 /* Pace Jewelers story timeline.
 
-   To add a photograph:
-   1. Upload the picture into images/photos
-      (on GitHub: Add file, then Upload files).
-   2. Copy an entry in this list. Keep the list in order, oldest first.
+   To add a moment:
+   1. Copy an entry in PACE_TIMELINE. Keep the list in order, oldest first.
         year     label on the line, such as "1948" (leave out if you don't know it)
         title    heading
-        text     a sentence or two (optional)
-        image    path to the file, such as "images/photos/my-photo.jpg"
-        full     a larger file opened when the photo is clicked (optional)
-        alt      what the photograph shows
-        caption  line under the photo
+        text     a sentence or two
+
+   Shop photographs for the archive live in PACE_ARCHIVE.
+   To add one, upload the picture into images/photos and copy an entry there.
 */
 window.PACE_TIMELINE = [
   {
@@ -21,7 +18,22 @@ window.PACE_TIMELINE = [
   {
     year: "1966",
     title: "The counter",
-    text: "Pace Jewelers, photographed at the counter.",
+    text: "Pace Jewelers, photographed at the counter."
+  },
+  {
+    year: "Pickens",
+    title: "A second shop on Main Street",
+    text: "For 42 years, a Pace Jewelers store served Pickens from its Main Street storefront, until longtime jeweler Riley Garrick retired and the family brought everything home to Greenville."
+  },
+  {
+    year: "Today",
+    title: "Fourth generation, same counter",
+    text: "Now in the Village of West Greenville, just off downtown, Pace still does what it has always done: engagement rings, custom pieces, and watch and jewelry repair done right in the shop."
+  }
+];
+
+window.PACE_ARCHIVE = [
+  {
     image: "images/photos/shop-1966.webp",
     full: "images/photos/shop-1966-full.jpg",
     width: 2000,
@@ -30,21 +42,10 @@ window.PACE_TIMELINE = [
     caption: "The counter, 1966"
   },
   {
-    year: "Pickens",
-    title: "A second shop on Main Street",
-    text: "For 42 years, a Pace Jewelers store served Pickens from its Main Street storefront, until longtime jeweler Riley Garrick retired and the family brought everything home to Greenville."
-  },
-  {
-    title: "The family behind the counter",
     image: "images/photos/family-counter-scan.jpg",
     width: 2730,
     height: 1536,
     alt: "Members of the Pace family standing behind the jewelry counter in the shop",
     caption: "Behind the counter"
-  },
-  {
-    year: "Today",
-    title: "Fourth generation, same counter",
-    text: "Now in the Village of West Greenville, just off downtown, Pace still does what it has always done: engagement rings, custom pieces, and watch and jewelry repair done right in the shop."
   }
 ];
