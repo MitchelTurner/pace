@@ -131,9 +131,8 @@
   .hero-photos .photo.vintage .img img{border-radius:8px}
   .hero-photos .stack-a{top:0;left:0;width:94%;z-index:1;transform:rotate(-2.2deg)}
   .hero-photos .stack-a .img{aspect-ratio:4/3}
-  .hero-photos .stack-b{right:0;bottom:0;width:46%;z-index:2;transform:rotate(3.4deg)}
-  .hero-photos .stack-b .img{aspect-ratio:4/5}
-  .hero-photos .stack-b .img img{object-position:center 28%}
+  .hero-photos .stack-b{right:0;bottom:6px;width:64%;z-index:2;transform:rotate(2.4deg)}
+  .hero-photos .stack-b .img{aspect-ratio:16/9}
   .hero-photos .photo.is-top{z-index:4}
   .timeline .photo{cursor:zoom-in}
   .hero-photos .photo:hover,.hero-photos .photo:focus-visible{z-index:5;transform:rotate(0deg) translateY(-12px) scale(1.05);box-shadow:0 36px 60px -28px rgba(6,32,71,.45)}
@@ -141,7 +140,7 @@
   .hero-photos figcaption{position:absolute;left:16px;bottom:16px;margin:0;width:max-content;max-width:calc(100% - 32px);color:var(--ink);z-index:2;background:rgba(255,255,255,.92);padding:6px 12px 6px 10px;border-radius:999px}
   .hero-photos figcaption::before{background:var(--accent)}
   .hero-photos .stack-a figcaption{top:16px;bottom:auto}
-  .hero-photos .stack-b figcaption{right:16px;left:auto}
+  .hero-photos .stack-b figcaption{left:16px;right:auto}
   .tl-item .photo.zoom{cursor:zoom-in}
 
   /* stats strip (story) */
@@ -319,7 +318,7 @@
     .hero .wrap,.booking .wrap,.visit .wrap,.reviews .wrap{grid-template-columns:1fr}
     .hero-photos{height:auto;min-height:0;margin-top:12px;padding-bottom:20%}
     .hero-photos .stack-a{position:relative;width:100%;top:auto;left:auto}
-    .hero-photos .stack-b{width:36%}
+    .hero-photos .stack-b{width:72%}
     .booking aside{position:static}
     .tl-item{padding-bottom:40px}
     .services-grid,.gallery{grid-template-columns:1fr 1fr}
@@ -330,7 +329,7 @@
     section{padding:80px 0}
     .hero-photos{height:auto;min-height:0;margin-top:8px;padding-bottom:32%}
     .hero-photos .stack-a{position:relative;width:100%;top:auto;left:auto}
-    .hero-photos .stack-b{width:50%}
+    .hero-photos .stack-b{width:82%}
     .services-grid,.gallery,.gallery.photos,.choices,.row2{grid-template-columns:1fr}
     .drawing-strip{grid-template-columns:repeat(2,1fr)}
     .gallery .photo .img{min-height:0}
@@ -398,11 +397,11 @@
         </div>
         <figcaption>The counter, 1966</figcaption>
       </figure>
-      <figure class="photo vintage stack-b is-top" tabindex="0" role="button" aria-label="Open two generations at the bench">
+      <figure class="photo vintage stack-b is-top" tabindex="0" role="button" aria-label="Open the family behind the counter">
         <div class="img">
-          <img src="images/photos/family-bench.webp" width="1080" height="1280" alt="A younger jeweler at the bench, with an older jeweler standing beside him">
+          <img src="images/photos/family-counter.webp" data-full="images/photos/family-counter-scan.jpg" width="1800" height="1013" alt="Members of the Pace family standing behind the jewelry counter in the shop">
         </div>
-        <figcaption>At the bench</figcaption>
+        <figcaption>Behind the counter</figcaption>
       </figure>
     </div>
   </div>
