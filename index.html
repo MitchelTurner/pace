@@ -306,10 +306,11 @@
   .review-card .score{font-family:var(--display);font-size:4.4rem;line-height:1;margin-top:14px}
   .review-card .where{color:var(--ink-soft);margin-top:8px}
   .review-card .where a{color:var(--accent);font-weight:600;text-decoration:none}
-  .quotes{display:grid;gap:14px;margin-top:22px}
-  .quotes blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
-  .quotes blockquote p{margin:0;max-width:none;color:var(--ink);font-family:var(--display);font-size:1.28rem;line-height:1.35}
-  .quotes footer{margin-top:12px;padding:0;background:none;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .reviews .pull{margin:28px 0 0;padding:0;border:0;max-width:20em}
+  .reviews .pull p{margin:0;max-width:none;color:var(--ink);font-family:var(--display);font-size:clamp(1.7rem,2.5vw,2.2rem);line-height:1.32}
+  .reviews .pull p::before{content:"“"}
+  .reviews .pull p::after{content:"”"}
+  .reviews .pull footer{margin-top:18px;padding:0;background:none;font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--ink-soft)}
 
   body > footer{background:var(--dark);color:#9aafc9;padding:44px 0;font-size:.85rem}
   body > footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
@@ -671,17 +672,10 @@
     <div>
       <span class="label">On Google</span>
       <h2>What neighbors say</h2>
-      <p>People who brought in a ring, a watch, or a piece that had been in the family.</p>
-      <div class="quotes">
-        <blockquote>
-          <p>Came to Pace to get my engagement ring resized and it’s perfect! You cannot tell the ring has been resized.</p>
-          <footer>Shannon French</footer>
-        </blockquote>
-        <blockquote>
-          <p>Pace is the only place I'd trust with my jewelry. They've helped update two rings passed down from grandmother so they'll last another 75 years.</p>
-          <footer>Allison</footer>
-        </blockquote>
-      </div>
+      <blockquote class="pull">
+        <p>Pace is the only place I’d trust with my jewelry. They’ve helped update two rings passed down from grandmother so they’ll last another 75 years.</p>
+        <footer>Allison</footer>
+      </blockquote>
       <div class="actions">
         <a class="btn" href="https://search.google.com/local/reviews?placeid=ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Read the reviews</a>
         <a class="btn ghost" href="https://search.google.com/local/writereview?placeid=ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Leave a Google review</a>
