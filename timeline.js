@@ -37,8 +37,9 @@ window.PACE_TIMELINE = [
   {
     title: "The family behind the counter",
     image: "images/photos/family-counter.webp",
-    width: 960,
-    height: 540,
+    full: "images/photos/family-counter-scan.jpg",
+    width: 1800,
+    height: 1013,
     alt: "Members of the Pace family standing behind the jewelry counter in the shop",
     caption: "Behind the counter"
   },
