@@ -299,18 +299,23 @@
   .visit .maplibregl-ctrl-attrib{font-size:10px;background:rgba(255,255,255,.8)}
   .visit .maplibregl-ctrl-attrib a{color:#555}
 
-  .reviews .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start}
+  .reviews .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:stretch}
   .reviews p{color:var(--ink-soft);margin-top:18px;max-width:38em}
   .reviews .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-  .review-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px 32px;text-align:center;position:sticky;top:110px}
+  .review-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 28px 12px;text-align:center;display:flex;flex-direction:column}
   .stars{position:relative;display:inline-block;font-size:1.35rem;letter-spacing:.14em;line-height:1}
   .stars-base{color:#d5e0ee}
   .stars-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;white-space:nowrap;color:#f5b301}
-  .review-card .score{font-family:var(--display);font-size:4.4rem;line-height:1;margin-top:14px}
-  .review-card .count{margin:12px 0 0;color:var(--ink);font-weight:600;font-size:.98rem;max-width:none}
-  .review-card .kinds{margin:8px auto 0;max-width:16em;font-size:.92rem}
-  .review-card .where{color:var(--ink-soft);margin-top:16px}
+  .review-card .score{font-family:var(--display);font-size:4.4rem;line-height:1;margin-top:10px}
+  .review-card .count{margin:10px 0 0;color:var(--ink);font-weight:600;font-size:.98rem;max-width:none}
+  .review-card .where{color:var(--ink-soft);margin-top:6px}
   .review-card .where a{color:var(--accent);font-weight:600;text-decoration:none}
+  .review-notes{list-style:none;margin:22px 0 0;text-align:left}
+  .review-notes li{padding:16px 0 18px;border-top:1px solid var(--line)}
+  .review-notes p{margin:0;max-width:none;color:var(--ink);font-family:var(--display);font-size:1.2rem;line-height:1.35}
+  .review-notes footer{margin-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .review-notes .job{color:var(--accent)}
+  .review-notes .who{color:var(--ink-soft)}
   .quotes{display:grid;gap:14px;margin-top:22px}
   .quotes blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
   .quotes blockquote p{margin:0;max-width:none;color:var(--ink);font-family:var(--display);font-size:1.28rem;line-height:1.35}
@@ -691,16 +696,29 @@
         <a class="btn ghost" href="https://search.google.com/local/writereview?placeid=ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Leave a Google review</a>
       </div>
     </div>
-    <div class="review-card">
+    <aside class="review-card">
       <div class="stars" role="img" aria-label="4.8 out of 5 on Google">
         <span class="stars-base" aria-hidden="true">★★★★★</span>
         <span class="stars-fill" aria-hidden="true">★★★★★</span>
       </div>
       <div class="score">4.8</div>
       <p class="count">Hundreds of Google reviews</p>
-      <p class="kinds">Resizing, repairs, and rings bought here.</p>
       <p class="where"><a href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Pace Jewelers Inc.</a> on Google</p>
-    </div>
+      <ul class="review-notes">
+        <li>
+          <p>I went to multiple jewelry stores to try and get it fixed and Pace was the only place that could fix it.</p>
+          <footer><span class="job">Watch repair</span><span class="who">Tristan Jain</span></footer>
+        </li>
+        <li>
+          <p>I purchased two wedding bands for my wife at Pace. She loves them both.</p>
+          <footer><span class="job">Wedding bands</span><span class="who">Chris Thompson</span></footer>
+        </li>
+        <li>
+          <p>My family and I have gone to Pace for years. They have repaired and resized many of our rings.</p>
+          <footer><span class="job">For years</span><span class="who">Sarai Ontiveros</span></footer>
+        </li>
+      </ul>
+    </aside>
   </div>
 </section>
 </main>
