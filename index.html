@@ -293,8 +293,13 @@
   .hours tr:last-child td{border-bottom:0}
   .hours td:last-child{text-align:right;color:var(--ink);font-weight:500}
   .hours tr.closed td{color:#8ea0b8 !important;font-weight:400}
-  .visit .map-card{grid-column:1 / -1;padding:0;overflow:hidden}
-  .visit .map-card iframe{width:100%;height:360px;border:0;display:block}
+  /* The map is a cross-origin embed, so it is aged from the outside:
+     a sepia filter on the frame, with paper grain and a vignette laid over it. */
+  .visit .wrap > .map-card{grid-column:1 / -1;padding:12px;overflow:hidden;position:relative;background:#efe4cc;border-color:#d3c19c}
+  .visit .map-card iframe{width:100%;height:360px;border:0;display:block;border-radius:10px;filter:sepia(.72) saturate(.78) contrast(1.06) brightness(.95) hue-rotate(-6deg)}
+  .visit .map-card::before,.visit .map-card::after{content:"";position:absolute;inset:12px;border-radius:10px;pointer-events:none}
+  .visit .map-card::before{mix-blend-mode:multiply;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .33 0 0 0 0 .17 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .visit .map-card::after{background:radial-gradient(ellipse at center,rgba(94,62,22,0) 52%,rgba(94,62,22,.2) 82%,rgba(70,44,14,.42) 100%);box-shadow:inset 0 0 0 1px rgba(84,58,24,.55),inset 0 0 0 4px rgba(239,228,204,.6),inset 0 0 0 5px rgba(84,58,24,.35)}
 
   .reviews .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
   .reviews p{color:var(--ink-soft);margin-top:18px;max-width:38em}
