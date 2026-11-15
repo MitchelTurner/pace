@@ -299,20 +299,24 @@
   .visit .maplibregl-ctrl-attrib{font-size:10px;background:rgba(255,255,255,.8)}
   .visit .maplibregl-ctrl-attrib a{color:#555}
 
-  .reviews .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+  .reviews .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start}
   .reviews p{color:var(--ink-soft);margin-top:18px;max-width:38em}
   .reviews .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-  .review-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px 32px;text-align:center}
+  .review-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px 32px;text-align:center;position:sticky;top:110px}
   .stars{position:relative;display:inline-block;font-size:1.35rem;letter-spacing:.14em;line-height:1}
   .stars-base{color:#d5e0ee}
   .stars-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;white-space:nowrap;color:#f5b301}
   .review-card .score{font-family:var(--display);font-size:4.4rem;line-height:1;margin-top:14px}
-  .review-card .where{color:var(--ink-soft);margin-top:8px}
+  .review-card .count{margin:12px 0 0;color:var(--ink);font-weight:600;font-size:.98rem;max-width:none}
+  .review-card .kinds{margin:8px auto 0;max-width:16em;font-size:.92rem}
+  .review-card .where{color:var(--ink-soft);margin-top:16px}
   .review-card .where a{color:var(--accent);font-weight:600;text-decoration:none}
   .quotes{display:grid;gap:14px;margin-top:22px}
   .quotes blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
   .quotes blockquote p{margin:0;max-width:none;color:var(--ink);font-family:var(--display);font-size:1.28rem;line-height:1.35}
-  .quotes footer{margin-top:12px;padding:0;background:none;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .quotes footer{margin-top:14px;padding:0;background:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .quotes .job{color:var(--accent)}
+  .quotes .who{color:var(--ink-soft)}
 
   body > footer{background:var(--dark);color:#9aafc9;padding:44px 0;font-size:.85rem}
   body > footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
@@ -323,6 +327,7 @@
     nav ul.open{display:flex}
     .menu-toggle{display:block}
     .hero .wrap,.booking .wrap,.visit .wrap,.reviews .wrap{grid-template-columns:1fr}
+    .review-card{position:static}
     .hero-photos{margin-top:12px;padding-bottom:38%}
     .hero-photos .photo{width:80%}
     .booking aside{position:static}
@@ -670,11 +675,15 @@
       <div class="quotes">
         <blockquote>
           <p>Came to Pace to get my engagement ring resized and it’s perfect! You cannot tell the ring has been resized.</p>
-          <footer>Shannon French</footer>
+          <footer><span class="job">Ring resizing</span><span class="who">Shannon French</span></footer>
         </blockquote>
         <blockquote>
           <p>Pace is the only place I'd trust with my jewelry. They've helped update two rings passed down from grandmother so they'll last another 75 years.</p>
-          <footer>Allison</footer>
+          <footer><span class="job">Family rings</span><span class="who">Allison</span></footer>
+        </blockquote>
+        <blockquote>
+          <p>My fiancé and I shopped all around Greenville for the best place to design my engagement ring, and Pace crushed it. They listened to everything we wanted. Never tried to upsell.</p>
+          <footer><span class="job">Engagement ring</span><span class="who">Anna Boschert</span></footer>
         </blockquote>
       </div>
       <div class="actions">
@@ -688,7 +697,9 @@
         <span class="stars-fill" aria-hidden="true">★★★★★</span>
       </div>
       <div class="score">4.8</div>
-      <p class="where">Google rating for <a href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Pace Jewelers Inc.</a></p>
+      <p class="count">Hundreds of Google reviews</p>
+      <p class="kinds">Resizing, repairs, and rings bought here.</p>
+      <p class="where"><a href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Pace Jewelers Inc.</a> on Google</p>
     </div>
   </div>
 </section>
