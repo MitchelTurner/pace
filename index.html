@@ -723,7 +723,7 @@
   </figure>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.15.0/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.15.0/dist/maplibre-gl-csp.js"></script>
 <script src="timeline.js"></script>
 <script>
 /* ============================================================
@@ -1040,10 +1040,13 @@ stack.querySelectorAll('.photo').forEach(fig => {
 });
 /* The WY palette (snazzymaps.com/style/8097): white land, light grey
    roads, sage water, no points of interest and no transit. A Google embed
-   cannot take a style, so the same colors are painted onto an open map. */
+   cannot take a style, so the same colors are painted onto an open map.
+   The worker file is hosted here because the site's content security policy
+   blocks the blob worker the default build would create. */
 (function(){
   const el = document.getElementById('shop-map');
   if(!el || !window.maplibregl) return;
+  maplibregl.setWorkerUrl('vendor/maplibre-gl-csp-worker.js');
   const map = new maplibregl.Map({
     container: el,
     style: 'https://tiles.openfreemap.org/styles/positron',
