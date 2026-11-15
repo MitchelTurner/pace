@@ -47,6 +47,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.15.0/dist/maplibre-gl.css" rel="stylesheet">
 <style>
   :root{
     --bg:#f5f7fb; --bg-2:#e8eef7; --card:#ffffff;
@@ -293,13 +294,15 @@
   .hours tr:last-child td{border-bottom:0}
   .hours td:last-child{text-align:right;color:var(--ink);font-weight:500}
   .hours tr.closed td{color:#8ea0b8 !important;font-weight:400}
-  /* The map is a cross-origin embed, so it is aged from the outside:
-     a sepia filter on the frame, with paper grain and a vignette laid over it. */
-  .visit .wrap > .map-card{grid-column:1 / -1;padding:12px;overflow:hidden;position:relative;background:#efe4cc;border-color:#d3c19c}
-  .visit .map-card iframe{width:100%;height:360px;border:0;display:block;border-radius:10px;filter:sepia(.72) saturate(.78) contrast(1.06) brightness(.95) hue-rotate(-6deg)}
-  .visit .map-card::before,.visit .map-card::after{content:"";position:absolute;inset:12px;border-radius:10px;pointer-events:none}
-  .visit .map-card::before{mix-blend-mode:multiply;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .33 0 0 0 0 .17 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  .visit .map-card::after{background:radial-gradient(ellipse at center,rgba(94,62,22,0) 52%,rgba(94,62,22,.2) 82%,rgba(70,44,14,.42) 100%);box-shadow:inset 0 0 0 1px rgba(84,58,24,.55),inset 0 0 0 4px rgba(239,228,204,.6),inset 0 0 0 5px rgba(84,58,24,.35)}
+  .visit .wrap > .map-card{grid-column:1 / -1;padding:0;overflow:hidden;position:relative}
+  .visit .shop-map{width:100%;height:360px}
+  .visit .map-open{position:absolute;z-index:2;top:12px;left:12px;background:#fff;color:var(--ink);text-decoration:none;font-size:.8rem;font-weight:600;padding:8px 12px;border-radius:8px;box-shadow:0 1px 4px rgba(16,35,63,.18)}
+  .visit .map-open:hover{color:var(--accent)}
+  .visit .map-pin-wrap{display:flex;align-items:center;gap:7px}
+  .visit .map-pin{width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 1px 4px rgba(16,35,63,.4);flex:none}
+  .visit .map-pin-name{font-family:var(--sans);font-weight:600;font-size:13px;line-height:1;color:#333;white-space:nowrap;background:rgba(255,255,255,.92);padding:4px 8px;border-radius:999px;box-shadow:0 1px 3px rgba(16,35,63,.12)}
+  .visit .maplibregl-ctrl-attrib{font-size:10px;background:rgba(255,255,255,.8)}
+  .visit .maplibregl-ctrl-attrib a{color:#555}
 
   .reviews .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
   .reviews p{color:var(--ink-soft);margin-top:18px;max-width:38em}
@@ -665,7 +668,8 @@
       <p style="margin-top:12px">A proud member of Jewelers of America and an A+ rated, BBB accredited business.</p>
     </div>
     <div class="map-card">
-      <iframe title="Map of Pace Jewelers at 1250 Pendleton Street, Greenville" src="https://maps.google.com/maps?q=Pace+Jewelers,+1250+Pendleton+Street,+Greenville,+SC+29611&amp;hl=en&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div id="shop-map" class="shop-map" role="region" aria-label="Map of Pace Jewelers at 1250 Pendleton Street, Greenville"></div>
+      <a class="map-open" href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Open in Maps</a>
     </div>
   </div>
 </section>
@@ -719,6 +723,7 @@
   </figure>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.15.0/dist/maplibre-gl.js"></script>
 <script src="timeline.js"></script>
 <script>
 /* ============================================================
@@ -1033,6 +1038,53 @@ stack.querySelectorAll('.photo').forEach(fig => {
     if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLightbox(fig); }
   });
 });
+/* The WY palette (snazzymaps.com/style/8097): white land, light grey
+   roads, sage water, no points of interest and no transit. A Google embed
+   cannot take a style, so the same colors are painted onto an open map. */
+(function(){
+  const el = document.getElementById('shop-map');
+  if(!el || !window.maplibregl) return;
+  const map = new maplibregl.Map({
+    container: el,
+    style: 'https://tiles.openfreemap.org/styles/positron',
+    center: [-82.4284349, 34.8473564],
+    zoom: 15,
+    cooperativeGestures: true,
+    attributionControl: { compact: false }
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  map.on('load', () => {
+    map.getStyle().layers.forEach(layer => {
+      const id = layer.id;
+      const paint = (prop, value) => { if(layer.paint && prop in layer.paint) map.setPaintProperty(id, prop, value); };
+      if(id.startsWith('railway')){ map.setLayoutProperty(id, 'visibility', 'none'); return; }
+      if(layer.type === 'background') paint('background-color', '#ffffff');
+      if(id === 'water') paint('fill-color', '#c8d7d4');
+      if(id === 'waterway') paint('line-color', '#c8d7d4');
+      if(id === 'park' || id === 'landuse_residential') paint('fill-color', '#f7f7f7');
+      if(id === 'landcover_wood'){ paint('fill-color', '#eef1ee'); paint('fill-opacity', 0.4); }
+      if(id === 'building'){ paint('fill-color', '#f4f4f4'); paint('fill-outline-color', '#e2e2e2'); }
+      if(layer.type === 'line' && (id.startsWith('highway') || id.startsWith('tunnel') || id.startsWith('road'))){
+        paint('line-color', id.includes('casing') ? '#d6d6d6' : '#eeeeee');
+      }
+      if(layer.type === 'symbol' && id.startsWith('highway-name')){
+        paint('text-color', '#7b7b7b');
+        paint('text-halo-color', '#ffffff');
+      }
+      if(layer.type === 'symbol' && id.startsWith('water')){
+        paint('text-color', '#070707');
+        paint('text-halo-color', '#ffffff');
+      }
+    });
+    const pin = document.createElement('div');
+    pin.className = 'map-pin-wrap';
+    pin.innerHTML = '<span class="map-pin"></span><span class="map-pin-name">Pace Jewelers</span>';
+    new maplibregl.Marker({ element: pin, anchor: 'left' })
+      .setLngLat([-82.4284349, 34.8473564])
+      .addTo(map);
+  });
+})();
+
 document.querySelectorAll('.timeline .photo, .gallery .photo, .drawing-strip .photo').forEach(fig => {
   fig.tabIndex = 0;
   fig.setAttribute('role','button');
