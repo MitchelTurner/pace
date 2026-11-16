@@ -315,9 +315,13 @@
   .reviews p{color:var(--ink-soft);margin-top:18px;max-width:38em}
   .reviews .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
   .review-card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:48px 40px 16px;text-align:center;display:flex;flex-direction:column}
-  .stars{position:relative;display:inline-block;font-size:2rem;letter-spacing:.16em;line-height:1}
+  .stars{position:relative;align-self:center;width:max-content;font-size:2rem;line-height:1}
+  .stars i{font-style:normal}
+  .stars i::before{content:"★"}
+  .stars-base,.stars-fill > span{display:flex;gap:.16em}
   .stars-base{color:#d5e0ee}
-  .stars-fill{position:absolute;left:0;top:0;width:96%;overflow:hidden;white-space:nowrap;color:#f5b301}
+  .stars-fill{position:absolute;left:0;top:0;height:100%;width:calc(4.8 / 5 * 100%);overflow:hidden;color:#f5b301}
+  .stars-fill > span{width:max-content}
   .review-card .score{font-family:var(--display);font-size:clamp(6.5rem,9vw,8.5rem);line-height:.85;margin-top:12px}
   .review-card .count{margin:18px 0 0;color:var(--ink);font-weight:600;font-size:1.2rem;max-width:none}
   .review-card .where{color:var(--ink-soft);margin-top:8px;font-size:1.05rem}
@@ -702,8 +706,8 @@
     </div>
     <aside class="review-card">
       <div class="stars" role="img" aria-label="4.8 out of 5 on Google">
-        <span class="stars-base" aria-hidden="true">★★★★★</span>
-        <span class="stars-fill" aria-hidden="true">★★★★★</span>
+        <span class="stars-base" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="stars-fill" aria-hidden="true"><span><i></i><i></i><i></i><i></i><i></i></span></span>
       </div>
       <div class="score">4.8</div>
       <p class="count">Hundreds of Google reviews</p>
