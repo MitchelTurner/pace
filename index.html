@@ -267,6 +267,13 @@
   .slots button:disabled{color:#b7c5d6;text-decoration:line-through;cursor:default}
   .slot-wrap{margin-top:24px}
   .slot-wrap .hint{color:var(--ink-soft);font-size:.88rem}
+  .choice-label{grid-column:1 / -1;margin-top:6px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .choice-label:first-child{margin-top:0}
+  .walk-note{margin-top:18px;background:var(--bg-2);border-radius:var(--radius);padding:16px 18px}
+  .walk-note p{margin:0;color:var(--ink-soft);font-size:.95rem}
+  .walk-note p + p{margin-top:12px}
+  .walk-note[hidden]{display:none}
+  .pane-nav .btn[hidden]{display:none}
   .pane-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
   .err{color:#b3261e;font-size:.85rem;min-height:1.2em;margin-top:10px}
   .summary{background:var(--bg-2);border-radius:var(--radius);padding:16px 18px;font-size:.92rem;margin-bottom:6px}
@@ -280,8 +287,7 @@
 
   /* visit */
   .visit{background:var(--bg-2)}
-  .visit .wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-  .visit .wrap > div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px}
+  .visit .wrap{display:block}
   .visit h3{font-family:var(--display);font-weight:400;font-size:2rem !important;margin-bottom:14px}
   .visit p,.visit td{color:var(--ink-soft)}
   .hours{width:100%;border-collapse:collapse;font-size:.92rem}
@@ -289,10 +295,16 @@
   .hours tr:last-child td{border-bottom:0}
   .hours td:last-child{text-align:right;color:var(--ink);font-weight:500}
   .hours tr.closed td{color:#8ea0b8 !important;font-weight:400}
-  .visit .wrap > .map-card{grid-column:1 / -1;padding:0;overflow:hidden;position:relative}
-  .visit .shop-map{width:100%;height:360px}
-  .visit .map-open{position:absolute;z-index:2;top:12px;left:12px;background:#fff;color:var(--ink);text-decoration:none;font-size:.8rem;font-weight:600;padding:8px 12px;border-radius:8px;box-shadow:0 1px 4px rgba(16,35,63,.18)}
-  .visit .map-open:hover{color:var(--accent)}
+  .visit .wrap > .map-card{padding:0;overflow:hidden;position:relative;border-radius:20px}
+  .visit .shop-map{width:100%;height:600px}
+  .visit-card{position:absolute;z-index:2;top:24px;left:24px;width:min(340px,calc(100% - 48px));background:#fff;border-radius:18px;padding:26px 24px;box-shadow:0 22px 44px -28px rgba(16,35,63,.55)}
+  .visit-card h3{font-size:1.8rem !important;margin:6px 0 10px}
+  .visit-card p{margin:0}
+  .visit-card .visit-hours{margin-top:12px}
+  .visit-card .visit-phone{display:inline-block;margin-top:14px;font-family:var(--display);font-size:1.6rem;text-decoration:none;color:var(--accent)}
+  .visit-card .visit-mail{display:inline-block;margin-top:6px}
+  .visit-card .visit-note{margin-top:12px;font-size:.9rem}
+  .visit-card .btn{margin-top:16px}
   .visit .map-pin-wrap{display:flex;align-items:center;gap:7px}
   .visit .map-pin{width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 1px 4px rgba(16,35,63,.4);flex:none}
   .visit .map-pin-name{font-family:var(--sans);font-weight:600;font-size:13px;line-height:1;color:#333;white-space:nowrap;background:rgba(255,255,255,.92);padding:4px 8px;border-radius:999px;box-shadow:0 1px 3px rgba(16,35,63,.12)}
@@ -331,7 +343,10 @@
     nav ul{display:none;position:absolute;top:76px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid var(--line)}
     nav ul.open{display:flex}
     .menu-toggle{display:block}
-    .hero .wrap,.booking .wrap,.visit .wrap,.reviews .wrap{grid-template-columns:1fr}
+    .hero .wrap,.booking .wrap,.reviews .wrap{grid-template-columns:1fr}
+    .visit .map-card{display:flex;flex-direction:column}
+    .visit-card{position:static;width:auto;order:-1;border-radius:20px 20px 0 0;box-shadow:none}
+    .visit .shop-map{height:320px}
     .review-card{position:static}
     .hero-photos{margin-top:12px;padding-bottom:38%}
     .hero-photos .photo{width:80%}
@@ -546,8 +561,8 @@
       <span class="label">Appointments</span>
       <h2>Request a time at the bench</h2>
       <div class="ornament" style="justify-content:flex-start">◆</div>
-      <p>Ask for a time for watch repairs and ring resizing. We'll call to confirm before it's on the books. Most batteries and band adjustments are done while you wait.</p>
-      <p class="note"><b>Walk-ins are always welcome.</b> A request holds a time we can call you about. For a full watch service or a resize, we'll inspect the piece and give you a quote before any work begins.</p>
+      <p>A battery or a band adjustment needs no appointment. Come in Monday through Friday and most are done while you wait.</p>
+      <p class="note"><b>Request a time</b> for a repair, a resize, or a custom piece. We'll call to confirm before it's on the books, and we'll inspect the piece and give you a quote before any work begins.</p>
       <p>Prefer the phone? Call us at <a href="tel:+18642323436">(864) 232-3436</a>.</p>
     </aside>
 
@@ -559,10 +574,12 @@
         <!-- STEP 1 -->
         <div class="pane on" data-step="1">
           <h3>What can we help with?</h3>
-          <p class="sub">Choose the service that fits best. We'll sort out the details in person.</p>
+          <p class="sub">A battery or a band adjustment is a walk-in. A repair, a resize, or a custom piece needs a time.</p>
           <div class="choices">
-            <label class="choice"><input type="radio" name="service" value="Watch battery" data-dur="15" data-kind="watch"><span class="dur">15 MIN</span><b>Watch Battery</b><small>Replacement &amp; reseal</small></label>
-            <label class="choice"><input type="radio" name="service" value="Watch band sizing" data-dur="15" data-kind="watch"><span class="dur">15 MIN</span><b>Band Sizing</b><small>Add or remove links</small></label>
+            <p class="choice-label">No appointment</p>
+            <label class="choice"><input type="radio" name="service" value="Watch battery" data-dur="15" data-kind="watch" data-walk="1"><span class="dur">WALK IN</span><b>Watch Battery</b><small>While you wait</small></label>
+            <label class="choice"><input type="radio" name="service" value="Watch band sizing" data-dur="15" data-kind="watch" data-walk="1"><span class="dur">WALK IN</span><b>Band Sizing</b><small>While you wait</small></label>
+            <p class="choice-label">Request a time</p>
             <label class="choice"><input type="radio" name="service" value="Watch repair / service" data-dur="30" data-kind="watch"><span class="dur">30 MIN</span><b>Watch Repair</b><small>Inspection &amp; estimate</small></label>
             <label class="choice"><input type="radio" name="service" value="Ring resizing" data-dur="30" data-kind="ring"><span class="dur">30 MIN</span><b>Ring Resizing</b><small>Sizing &amp; quote</small></label>
             <label class="choice"><input type="radio" name="service" value="Jewelry repair" data-dur="30" data-kind="jewelry"><span class="dur">30 MIN</span><b>Jewelry Repair</b><small>Chains, clasps, prongs</small></label>
@@ -583,6 +600,10 @@
             </div>
             <div class="field"><label for="ringMetal">Metal</label>
               <select id="ringMetal" name="ringMetal"><option value="">Not sure</option><option>Yellow gold</option><option>White gold</option><option>Rose gold</option><option>Platinum</option><option>Sterling silver</option><option>Other</option></select></div>
+          </div>
+          <div class="walk-note" hidden>
+            <p><b>No appointment needed.</b> Come in Monday through Friday, 10:00 to 5:30. Most batteries and band adjustments are done while you wait.</p>
+            <p><a class="btn ghost sm" href="tel:+18642323436">Call (864) 232-3436</a></p>
           </div>
           <div class="err" data-err="1"></div>
           <div class="pane-nav"><span></span><button type="button" class="btn" data-next>Choose a time →</button></div>
@@ -623,9 +644,9 @@
             <div class="stamp">RECEIVED</div>
             <h3>Thank you, <span id="cName"></span>.</h3>
             <p class="sub" style="margin-top:8px">Your request for <b id="cService"></b> on <b id="cWhen"></b> is in. It is not on the books until we call to confirm.</p>
+            <p class="sub">We'll call the number you gave. If you need us sooner, call <a href="tel:+18642323436">(864) 232-3436</a>.</p>
             <p class="sub" id="cNote"></p>
             <p class="ref">REF · <span id="cRef"></span></p>
-            <p class="sub" style="margin-top:18px">After your visit, <a href="https://search.google.com/local/writereview?placeid=ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">a Google review</a> helps the next neighbor in Greenville find the shop.</p>
             <p style="margin-top:22px"><button type="button" class="btn ghost sm" id="again">Book another</button></p>
           </div>
         </div>
@@ -637,35 +658,18 @@
 <!-- ================= VISIT ================= -->
 <section class="visit" id="visit">
   <div class="wrap">
-    <div>
-      <span class="label">Find Us</span>
-      <h3 style="font-size:1.8rem;margin-top:6px">Visit the shop</h3>
-      <p>1250 Pendleton Street<br>Greenville, SC 29611</p>
-      <p style="margin-top:10px">In the Village of West Greenville. On-street parking out front.</p>
-      <p style="margin-top:18px"><a class="btn ghost sm" href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Get Directions</a></p>
-    </div>
-    <div>
-      <span class="label">Hours</span>
-      <h3 style="font-size:1.8rem;margin-top:6px">When we're open</h3>
-      <table class="hours">
-        <tr><td>Monday</td><td>10:00 – 5:30</td></tr>
-        <tr><td>Tuesday</td><td>10:00 – 5:30</td></tr>
-        <tr><td>Wednesday</td><td>10:00 – 5:30</td></tr>
-        <tr><td>Thursday</td><td>10:00 – 5:30</td></tr>
-        <tr><td>Friday</td><td>10:00 – 5:30</td></tr>
-        <tr class="closed"><td>Sat &amp; Sun</td><td>Closed</td></tr>
-      </table>
-    </div>
-    <div>
-      <span class="label">Get in Touch</span>
-      <h3 style="font-size:1.8rem;margin-top:6px">Call or stop in</h3>
-      <p><a href="tel:+18642323436" style="font-family:var(--display);font-size:1.6rem;text-decoration:none;color:var(--accent)">(864) 232-3436</a></p>
-      <p style="margin-top:12px"><a href="mailto:pacejewelersinc@gmail.com">pacejewelersinc@gmail.com</a></p>
-      <p style="margin-top:12px">A proud member of Jewelers of America and an A+ rated, BBB accredited business.</p>
-    </div>
     <div class="map-card">
       <div id="shop-map" class="shop-map" role="region" aria-label="Map of Pace Jewelers at 1250 Pendleton Street, Greenville"></div>
-      <a class="map-open" href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Open in Maps</a>
+      <aside class="visit-card">
+        <span class="label">Find Us</span>
+        <h3>Visit the shop</h3>
+        <p>1250 Pendleton Street<br>Greenville, SC 29611</p>
+        <p class="visit-hours">Monday–Friday, 10:00–5:30<br>Saturday and Sunday, closed</p>
+        <p><a class="visit-phone" href="tel:+18642323436">(864) 232-3436</a></p>
+        <p><a class="visit-mail" href="mailto:pacejewelersinc@gmail.com">pacejewelersinc@gmail.com</a></p>
+        <p class="visit-note">In the Village of West Greenville, with on-street parking out front. A proud member of Jewelers of America and an A+ rated, BBB accredited business.</p>
+        <a class="btn ghost sm" href="https://www.google.com/maps/place/?q=place_id:ChIJj0LGMqsxWIgRiCIkU-yjsEM" target="_blank" rel="noopener">Get Directions</a>
+      </aside>
     </div>
   </div>
 </section>
@@ -777,9 +781,16 @@ const fmtDate = d => d.toLocaleDateString('en-US',{weekday:'long',month:'long',d
 function selectedService(){ return form.querySelector('input[name=service]:checked'); }
 
 /* show service-specific fields */
+function syncService(){
+  const r = selectedService();
+  const walk = !!(r && r.dataset.walk);
+  const kind = r ? r.dataset.kind : '';
+  form.querySelectorAll('.extra').forEach(x=>x.classList.toggle('on', !!r && !walk && x.dataset.kind===kind));
+  form.querySelector('.walk-note').hidden = !walk;
+  form.querySelector('[data-step="1"] [data-next]').hidden = walk;
+}
 form.querySelectorAll('input[name=service]').forEach(r=>r.addEventListener('change',()=>{
-  const kind = r.dataset.kind;
-  form.querySelectorAll('.extra').forEach(x=>x.classList.toggle('on', x.dataset.kind===kind));
+  syncService();
   err(1,''); state.time=null; if(state.date) renderSlots();
 }));
 
@@ -796,7 +807,12 @@ function go(step){
 }
 
 form.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>{
-  if(state.step===1){ if(!selectedService()) return err(1,'Please choose a service.'); go(2); }
+  if(state.step===1){
+    const svc = selectedService();
+    if(!svc) return err(1,'Please choose a service.');
+    if(svc.dataset.walk) return;
+    go(2);
+  }
   else if(state.step===2){ if(!state.date||state.time==null) return err(2,'Please pick a date and a time.'); go(3); }
 }));
 form.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>go(state.step-1)));
@@ -1071,7 +1087,13 @@ stack.querySelectorAll('.photo').forEach(fig => {
     attributionControl: { compact: false }
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  const placePin = () => {
+    const wide = window.matchMedia('(min-width:901px)').matches;
+    map.setPadding(wide ? { top: 40, left: 420, bottom: 48, right: 48 } : { top: 0, left: 0, bottom: 0, right: 0 });
+  };
   map.on('load', () => {
+    placePin();
+    window.addEventListener('resize', placePin);
     map.getStyle().layers.forEach(layer => {
       const id = layer.id;
       const paint = (prop, value) => { if(layer.paint && prop in layer.paint) map.setPaintProperty(id, prop, value); };
