@@ -16,18 +16,17 @@ window.PACE_TIMELINE = [
   {
     year: "1948",
     title: "The doors open",
-    text: "The Pace family starts a jewelry business in Greenville, built on watch work, fine jewelry and knowing customers by name."
+    text: "Watch work, fine jewelry, and customers known by name."
   },
   {
     year: "1966",
     title: "The counter",
-    text: "Pace Jewelers, photographed at the counter.",
     image: "images/photos/shop-1966.webp",
     full: "images/photos/shop-1966-full.jpg",
     width: 2000,
     height: 1461,
     alt: "Black and white photograph from 1966 of Pace Jewelers staff showing a customer a piece of jewelry at the counter",
-    caption: "The counter, 1966"
+    caption: "Staff with a customer"
   },
   {
     year: "Pickens",
@@ -35,12 +34,13 @@ window.PACE_TIMELINE = [
     text: "For 42 years, a Pace Jewelers store served Pickens from its Main Street storefront, until longtime jeweler Riley Garrick retired and the family brought everything home to Greenville."
   },
   {
-    title: "The family behind the counter",
+    year: "Family",
+    title: "Behind the counter",
     image: "images/photos/family-counter-scan.jpg",
     width: 2730,
     height: 1536,
     alt: "Members of the Pace family standing behind the jewelry counter in the shop",
-    caption: "Behind the counter"
+    caption: "The Pace family"
   },
   {
     year: "Today",

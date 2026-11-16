@@ -149,16 +149,19 @@
   .story-intro p{color:var(--ink-soft);font-size:1.12rem;margin-top:22px;text-align:center !important}
   .dropcap::first-letter{all:unset}
   .timeline{position:relative;max-width:760px;margin:0 auto;list-style:none;display:flex;flex-direction:column}
-  .timeline::before{content:"";position:absolute;left:7px;top:14px;bottom:14px;width:2px;background:#c5d4ea}
-  .tl-item{position:relative;display:block;padding:0 0 56px 46px;background:none;border:0;border-radius:0}
+  .timeline::before{content:"";position:absolute;left:123px;top:16px;bottom:0;width:2px;background:#c5d4ea}
+  .tl-item{position:relative;display:grid;grid-template-columns:100px 1fr;column-gap:48px;padding:0 0 48px;background:none;border:0;border-radius:0}
   .tl-item:last-child{padding-bottom:0}
-  .tl-item::before{content:"";position:absolute;left:0;top:10px;width:16px;height:16px;border-radius:50%;background:var(--bg-2);border:3px solid var(--accent);box-sizing:border-box}
-  .tl-year{font-family:var(--display);font-size:clamp(2.4rem,4vw,3.2rem);line-height:1;color:var(--accent)}
-  .tl-item h3{font-size:1.35rem;margin:12px 0 8px}
-  .tl-item > h3:first-child{margin-top:0}
-  .tl-item p{color:var(--ink-soft);max-width:38em}
+  .tl-item:last-child::after{content:"";position:absolute;left:116px;top:24px;bottom:0;width:16px;background:var(--bg-2)}
+  .tl-item::before{content:"";position:absolute;left:116px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--bg-2);border:3px solid var(--accent);box-sizing:border-box;z-index:1}
+  .tl-mark{line-height:1;color:var(--accent);text-align:right}
+  .tl-mark.year{font-family:var(--display);font-size:2.15rem}
+  .tl-mark.word{font-family:var(--sans);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding-top:9px}
+  .tl-body h3{font-size:1.35rem;margin:0 0 8px}
+  .tl-body p{color:var(--ink-soft);max-width:36em}
   .timeline .photo{margin-top:14px;width:168px;max-width:70%}
-  .timeline .photo .img{aspect-ratio:4/3;height:auto;min-height:0;border-radius:12px;background:#efeae2;box-shadow:0 14px 28px -18px rgba(6,32,71,.5)}
+  .timeline .photo .img{aspect-ratio:4/3;height:auto;min-height:0;border-radius:12px;background:#fff;padding:6px;box-shadow:0 14px 28px -18px rgba(6,32,71,.5)}
+  .timeline .photo .img img{border-radius:7px}
   .timeline .photo.vintage .img img{width:100%;height:100%;object-fit:cover;object-position:center}
 
   /* services */
@@ -362,6 +365,12 @@
   }
   @media (max-width:600px){
     section{padding:80px 0}
+    .timeline::before{left:7px}
+    .tl-item{grid-template-columns:1fr;column-gap:0;row-gap:6px;padding-left:40px}
+    .tl-item::before{left:0;top:4px}
+    .tl-item:last-child::after{left:0}
+    .tl-mark{text-align:left}
+    .tl-mark.year{font-size:2rem}
     .hero-photos{margin-top:8px;padding-bottom:46%}
     .hero-photos .photo{width:88%}
     .services-grid,.gallery,.gallery.photos,.choices,.row2{grid-template-columns:1fr}
@@ -1037,23 +1046,24 @@ const timelineList = document.getElementById('timeline');
 (window.PACE_TIMELINE || []).forEach(item => {
   const li = document.createElement('li');
   li.className = 'tl-item';
-  if(item.year){
-    const year = document.createElement('div');
-    year.className = 'tl-year';
-    year.textContent = item.year;
-    li.appendChild(year);
-  }
+  const mark = document.createElement('div');
+  mark.className = 'tl-mark' + (item.year ? (/^\d/.test(item.year) ? ' year' : ' word') : '');
+  if(item.year) mark.textContent = item.year;
+  li.appendChild(mark);
+  const body = document.createElement('div');
+  body.className = 'tl-body';
   if(item.title){
     const h = document.createElement('h3');
     h.textContent = item.title;
-    li.appendChild(h);
+    body.appendChild(h);
   }
   if(item.text){
     const p = document.createElement('p');
     p.textContent = item.text;
-    li.appendChild(p);
+    body.appendChild(p);
   }
-  if(item.image) li.appendChild(photoFigure(item));
+  if(item.image) body.appendChild(photoFigure(item));
+  li.appendChild(body);
   timelineList.appendChild(li);
 });
 const photoArchive = document.getElementById('photoArchive');
