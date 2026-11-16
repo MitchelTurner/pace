@@ -34,17 +34,22 @@ window.PACE_TIMELINE = [
     text: "For 42 years, a Pace Jewelers store served Pickens from its Main Street storefront, until longtime jeweler Riley Garrick retired and the family brought everything home to Greenville."
   },
   {
-    year: "Family",
-    title: "Behind the counter",
+    year: "Bench",
+    title: "At the bench",
+    image: "images/photos/family-bench.webp",
+    width: 960,
+    height: 1280,
+    alt: "Two jewelers at the workbench in the shop, one seated and one standing",
+    caption: "The bench in the shop"
+  },
+  {
+    year: "Today",
+    title: "Fourth generation, same counter",
+    text: "In the Village of West Greenville, just off downtown. Open Monday through Friday, 10:00 to 5:30. Come in.",
     image: "images/photos/family-counter-scan.jpg",
     width: 2730,
     height: 1536,
     alt: "Members of the Pace family standing behind the jewelry counter in the shop",
     caption: "The Pace family"
-  },
-  {
-    year: "Today",
-    title: "Fourth generation, same counter",
-    text: "Now in the Village of West Greenville, just off downtown, Pace still does what it has always done: engagement rings, custom pieces, and watch and jewelry repair done right in the shop."
   }
 ];

@@ -161,6 +161,7 @@
   .tl-body p{color:var(--ink-soft);max-width:36em}
   .timeline .photo{margin-top:14px;width:168px;max-width:70%}
   .timeline .photo .img{aspect-ratio:4/3;height:auto;min-height:0;border-radius:12px;background:#fff;padding:6px;box-shadow:0 14px 28px -18px rgba(6,32,71,.5)}
+  .timeline .photo.portrait .img{aspect-ratio:3/4}
   .timeline .photo .img img{border-radius:7px}
   .timeline .photo.vintage .img img{width:100%;height:100%;object-fit:cover;object-position:center}
 
@@ -199,6 +200,7 @@
   .gallery.photos{grid-template-columns:repeat(3,1fr);margin-top:48px}
   .gallery.photos .photo,.gallery.photos .photo:nth-child(1){grid-column:auto;grid-row:auto;display:block}
   .gallery.photos .photo .img,.gallery.photos .photo:nth-child(1) .img{aspect-ratio:4/3;min-height:0;height:auto;flex:none}
+  .gallery.photos .photo.portrait .img img{object-position:center top}
   .drawings-head{margin-top:64px}
   .drawings-head .intro{margin-top:8px}
   .drawing-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:22px}
@@ -457,7 +459,7 @@
       <span class="label">Our Story</span>
       <h2>A Greenville family business</h2>
       <div class="ornament">◆</div>
-      <p class="dropcap" style="text-align:left">The Pace family opened the doors in 1948, and the business has been handed down through four generations since. A lot has changed in Greenville over those years. The way we work hasn't: honest advice, fair prices, and repairs done in-house by hands that have been doing them for decades.</p>
+      <p class="dropcap" style="text-align:left">Four generations of the Pace family, and the work is still done in the shop.</p>
     </div>
 
     <ol class="timeline" id="timeline"></ol>
@@ -1033,6 +1035,7 @@ function photoFigure(item){
   if(item.full) img.setAttribute('data-full', item.full);
   if(item.width) img.width = item.width;
   if(item.height) img.height = item.height;
+  if(item.width && item.height && item.height > item.width) fig.classList.add('portrait');
   frame.appendChild(img);
   fig.appendChild(frame);
   if(item.caption){
