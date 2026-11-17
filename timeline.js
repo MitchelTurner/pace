@@ -16,7 +16,17 @@ window.PACE_TIMELINE = [
   {
     year: "1948",
     title: "The doors open",
-    text: "Watch work, fine jewelry, and customers known by name."
+    text: "Edgar Pace opened the shop at 1265 Pendleton Street, after the Navy and Greenville’s Bulova School of Watchmaking. The work was watches."
+  },
+  {
+    year: "1950s",
+    title: "Polly joins the shop",
+    text: "Edgar’s wife, Polly, began working in the shop and brought in china, crystal, and silver."
+  },
+  {
+    year: "1960",
+    title: "Across the street",
+    text: "The shop moved across Pendleton Street, about a block, to 1250, where it still stands."
   },
   {
     year: "1966",
@@ -29,9 +39,9 @@ window.PACE_TIMELINE = [
     caption: "Staff with a customer"
   },
   {
-    year: "Pickens",
-    title: "A second shop on Main Street",
-    text: "For 42 years, a Pace Jewelers store served Pickens from its Main Street storefront, until longtime jeweler Riley Garrick retired and the family brought everything home to Greenville."
+    year: "1972",
+    title: "Steve joins the shop",
+    text: "Steve Pace, Edgar’s son, joined the family business."
   },
   {
     year: "Bench",
@@ -41,6 +51,16 @@ window.PACE_TIMELINE = [
     height: 1280,
     alt: "Two jewelers at the workbench in the shop, one seated and one standing",
     caption: "The bench in the shop"
+  },
+  {
+    year: "2012",
+    title: "The Pickens shop closes",
+    text: "After 42 years on Main Street, jeweler Riley Garrick retired and the Pickens shop closed. The Greenville store stayed open."
+  },
+  {
+    year: "2026",
+    title: "A mural for the Village",
+    text: "Greenville artist Griffin Cordell painted a 70-foot mural on the side of the shop. He called it a love letter to the Village."
   },
   {
     year: "Today",
