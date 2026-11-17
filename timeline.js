@@ -11,22 +11,26 @@
         full     a larger file opened when the photo is clicked (optional)
         alt      what the photograph shows
         caption  line under the photo
+        sources  articles the words come from: { name, url }
 */
 window.PACE_TIMELINE = [
   {
     year: "1948",
     title: "The doors open",
-    text: "Edgar Pace opened the shop at 1265 Pendleton Street, after the Navy and Greenville’s Bulova School of Watchmaking. The work was watches."
+    text: "Edgar Pace opened the shop at 1265 Pendleton Street, after the Navy and Greenville’s Bulova School of Watchmaking. The work was watches.",
+    sources: [{ name: "Upstate Business Journal", url: "https://upstatebusinessjournal.com/milestone/milestone-pace-jewelers-still-ticking-after-75-years-greenville-sc/" }]
   },
   {
     year: "1950s",
     title: "Polly joins the shop",
-    text: "Edgar’s wife, Polly, began working in the shop and brought in china, crystal, and silver."
+    text: "Edgar’s wife, Polly, began working in the shop and brought in china, crystal, and silver.",
+    sources: [{ name: "Upstate Business Journal", url: "https://upstatebusinessjournal.com/milestone/milestone-pace-jewelers-still-ticking-after-75-years-greenville-sc/" }]
   },
   {
     year: "1960",
     title: "Across the street",
-    text: "The shop moved across Pendleton Street, about a block, to 1250, where it still stands."
+    text: "The shop moved across Pendleton Street, about a block, to 1250, where it still stands.",
+    sources: [{ name: "Upstate Business Journal", url: "https://upstatebusinessjournal.com/milestone/milestone-pace-jewelers-still-ticking-after-75-years-greenville-sc/" }]
   },
   {
     year: "1966",
@@ -41,7 +45,11 @@ window.PACE_TIMELINE = [
   {
     year: "1972",
     title: "Steve joins the shop",
-    text: "Steve Pace, Edgar’s son, joined the family business."
+    text: "Steve Pace, Edgar’s son, joined the family business.",
+    sources: [
+      { name: "Upstate Business Journal", url: "https://upstatebusinessjournal.com/milestone/milestone-pace-jewelers-still-ticking-after-75-years-greenville-sc/" },
+      { name: "Greenville Journal", url: "https://greenvillejournal.com/live_local_2023/pace-jewelers/" }
+    ]
   },
   {
     year: "Bench",
@@ -55,12 +63,14 @@ window.PACE_TIMELINE = [
   {
     year: "2012",
     title: "The Pickens shop closes",
-    text: "After 42 years on Main Street, jeweler Riley Garrick retired and the Pickens shop closed. The Greenville store stayed open."
+    text: "After 42 years on Main Street, jeweler Riley Garrick retired and the Pickens shop closed. The Greenville store stayed open.",
+    sources: [{ name: "Your Pickens County", url: "https://www.yourpickenscounty.com/pace-jewelers-closing-in-pickens/" }]
   },
   {
     year: "2026",
     title: "A mural for the Village",
-    text: "Greenville artist Griffin Cordell painted a 70-foot mural on the side of the shop. He called it a love letter to the Village."
+    text: "Greenville artist Griffin Cordell painted a 70-foot mural on the side of the shop. He called it a love letter to the Village.",
+    sources: [{ name: "WYFF", url: "https://www.wyff4.com/article/greenville-artist-mural-west-end/73942811" }]
   },
   {
     year: "Today",
