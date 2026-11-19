@@ -16,12 +16,17 @@ window.PACE_TIMELINE = [
   {
     year: "1948",
     title: "The doors open",
-    text: "Edgar Pace opened the shop at 1265 Pendleton Street, after the Navy and Greenville’s Bulova School of Watchmaking. The work was watches."
+    text: "Edgar W. Pace opened the shop at 1265 Pendleton Street in West Greenville, a place for neighbors to have a watch fixed. He had come home from the Navy and graduated from Greenville’s Bulova School of Watchmaking, a branch for GIs returning from the war."
+  },
+  {
+    year: "1950s",
+    title: "Watches, then diamonds",
+    text: "As the shop grew he added popularly priced watches — Bulova, Hamilton, and Elgin — then diamond engagement rings and other diamond and colored-stone jewelry."
   },
   {
     year: "1950s",
     title: "Polly joins the shop",
-    text: "Edgar’s wife, Polly, began working in the shop and brought in china, crystal, and silver."
+    text: "In the mid-1950s his wife, Polly, began working in the shop. It was her idea to add china, crystal, and silver, and the store began a bridal registry."
   },
   {
     year: "1960",
@@ -41,7 +46,12 @@ window.PACE_TIMELINE = [
   {
     year: "1972",
     title: "Steve joins the shop",
-    text: "Steve Pace, Edgar’s son, joined the family business."
+    text: "Steve, Edgar and Polly’s son, entered the business and learned jewelry and watch repair from his father and the other watchmakers and jewelers in the shop."
+  },
+  {
+    year: "1976",
+    title: "Teresa joins the shop",
+    text: "Steve’s wife, Teresa, began as bookkeeper, store decorator, and sales associate. She stayed until she retired in 2018."
   },
   {
     year: "Bench",
@@ -58,6 +68,11 @@ window.PACE_TIMELINE = [
     text: "After 42 years on Main Street, jeweler Riley Garrick retired and the Pickens shop closed. The Greenville store stayed open."
   },
   {
+    year: "2018",
+    title: "Rita takes the books",
+    text: "When Teresa retired, their daughter, Rita Scott, took over her duties in the shop."
+  },
+  {
     year: "2026",
     title: "A mural for the Village",
     text: "Greenville artist Griffin Cordell painted a 70-foot mural on the side of the shop. He called it a love letter to the Village."
@@ -65,7 +80,7 @@ window.PACE_TIMELINE = [
   {
     year: "Today",
     title: "Fourth generation, same counter",
-    text: "In the Village of West Greenville, just off downtown. Open Monday through Friday, 10:00 to 5:30. Come in.",
+    text: "Joshua Scott, Rita’s son and Edgar’s grandson, is learning watches from his grandfather. Same counter in the Village of West Greenville. Open Monday through Friday, 10:00 to 5:30.",
     image: "images/photos/family-counter-scan.jpg",
     width: 2730,
     height: 1536,

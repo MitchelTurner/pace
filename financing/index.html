@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financing · Pace Jewelers · Greenville, S.C.</title>
+<meta name="description" content="Jewelry financing at Pace Jewelers in Greenville through Jewelers Reserve. Most in-store purchases. Come in and the staff will walk you through a plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Family owned &amp; operated since 1948</span>
+    <span><a href="tel:+18642323436">(864) 232-3436</a> · Mon–Fri 10–5:30 · 1250 Pendleton St.</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="../" class="brand" aria-label="Pace Jewelers home">
+      <img class="logo" src="../images/brand/logo.png" width="916" height="180" alt="Pace Jewelers">
+      <span class="est-mark">Est. 1948</span>
+    </a>
+    <nav>
+      <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+      <ul id="site-nav">
+        <li><a href="../#story">Our Story</a></li>
+        <li><a href="../#services">Services</a></li>
+        <li><a href="./" aria-current="page">Financing</a></li>
+        <li><a href="../#archive">The Archive</a></li>
+        <li><a href="../#reviews">Reviews</a></li>
+        <li><a href="../#visit">Visit</a></li>
+        <li><a href="../#book" class="btn sm">Book Appointment</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="finance">
+  <div class="wrap finance-grid">
+    <div>
+      <span class="label">In the shop</span>
+      <h1>Financing for a piece you’ll keep</h1>
+      <p class="lead">Most purchases in the store can be financed through Jewelers Reserve. There is more than one way to pay it off. Come in, and the staff will sit with you and help you decide whether a plan fits.</p>
+      <div class="actions">
+        <a class="btn" href="tel:+18642323436">Call (864) 232-3436</a>
+        <a class="btn ghost" href="../#visit">Visit the shop</a>
+      </div>
+    </div>
+    <aside class="finance-card">
+      <h2>With Jewelers Reserve</h2>
+      <p>Payments and the account are handled online. You can add another person to the account, at no extra cost, so a partner can buy a gift later in the year.</p>
+      <ul class="benefit-list">
+        <li>Affordable monthly payments</li>
+        <li>No annual account fee</li>
+        <li>$0 liability on unauthorized payments</li>
+        <li>Deferred interest plans</li>
+        <li>Plans for a major purchase</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="finance-more">
+  <div class="wrap">
+    <span class="label">How it works</span>
+    <h2>Set up at the counter</h2>
+    <div class="finance-steps">
+      <article>
+        <span>1</span>
+        <h3>Bring the piece, or the idea</h3>
+        <p>An engagement ring, a necklace, a watch, a bracelet. Financing is for most things bought in the store.</p>
+      </article>
+      <article>
+        <span>2</span>
+        <h3>Look at the plans together</h3>
+        <p>The staff will walk through the payoff options, including deferred interest, before anything is signed.</p>
+      </article>
+      <article>
+        <span>3</span>
+        <h3>Pay it from home</h3>
+        <p>Once the account is open, payments and the account itself are managed online.</p>
+      </article>
+    </div>
+    <p class="finance-note">Plans differ. The shop will go over the terms with you. If financing is not the right fit, they will say so.</p>
+    <div class="finance-visit">
+      <div>
+        <span class="label">Come in</span>
+        <h2>1250 Pendleton Street</h2>
+      </div>
+      <div>
+        <p>Greenville, SC 29611</p>
+        <p>Monday–Friday, 10:00–5:30</p>
+        <p style="margin-top:10px"><a class="visit-phone" href="tel:+18642323436">(864) 232-3436</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="../" class="brand" aria-label="Pace Jewelers home"><img class="logo" src="../images/brand/logo-white.png" width="916" height="180" alt="Pace Jewelers"></a>
+    <span>© <span id="yr"></span> Pace Jewelers, Inc. · 1250 Pendleton St., Greenville, S.C.</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const menuBtn = document.querySelector('.menu-toggle');
+const siteNav = document.getElementById('site-nav');
+if(menuBtn && siteNav){
+  menuBtn.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  siteNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    siteNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+}
+</script>
+</body>
+</html>
