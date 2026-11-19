@@ -153,8 +153,10 @@
   .tl-viewport{position:relative;min-height:680px}
   .tl-slide{position:absolute;inset:0;display:grid;place-items:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .55s ease,visibility .55s}
   .tl-slide.is-active{opacity:1;visibility:visible;z-index:1;pointer-events:auto}
-  .tl-bg{position:absolute;inset:0;overflow:hidden}
-  .tl-bg img{width:100%;height:100%;max-width:none;object-fit:cover;filter:grayscale(1) contrast(1.05);-webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);mask-image:linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%)}
+  .tl-bg{position:absolute;inset:0;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);mask-image:linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%)}
+  .tl-bg img{width:100%;height:100%;max-width:none;object-fit:cover;filter:grayscale(1) contrast(1.28) brightness(.86) sepia(.42)}
+  .tl-bg::before{content:"";position:absolute;inset:0;background:rgba(28,18,10,.42);mix-blend-mode:multiply;pointer-events:none}
+  .tl-bg::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='g'><feTurbulence type='turbulence' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");background-size:160px 160px}
   .tl-slide.has-photo .tl-copy::before{content:"";position:absolute;left:50%;top:46%;width:min(560px,78%);height:200px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center, rgba(3,16,31,.5) 0%, rgba(3,16,31,0) 68%);pointer-events:none;z-index:-1}
   .tl-slide.has-photo .tl-kicker,.tl-slide.has-photo .tl-text,.tl-slide.has-photo .tl-count,.tl-slide.has-photo .tl-open,.tl-slide.has-photo .tl-side{text-shadow:0 1px 10px rgba(0,0,0,.7)}
   .tl-copy{opacity:1}
