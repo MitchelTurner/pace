@@ -201,16 +201,6 @@
   .gallery.photos .photo,.gallery.photos .photo:nth-child(1){grid-column:auto;grid-row:auto;display:block}
   .gallery.photos .photo .img,.gallery.photos .photo:nth-child(1) .img{aspect-ratio:4/3;min-height:0;height:auto;flex:none}
   .gallery.photos .photo.portrait .img img{object-position:center top}
-  .drawings-head{margin-top:64px}
-  .drawings-head .intro{margin-top:8px}
-  .drawing-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:22px}
-  .drawing-strip .photo{cursor:zoom-in}
-  .drawing-strip .photo .img{aspect-ratio:1;min-height:0;height:auto;background:#000}
-  .drawing-strip .photo .img img{width:100%;height:100%;object-fit:cover;filter:none}
-  .drawing-strip .photo.wide{grid-column:span 2}
-  .drawing-strip .photo.wide .img{aspect-ratio:2.08/1}
-  .drawing-strip .photo.wide .img img{object-fit:contain}
-  .drawing-strip figcaption{font-size:.72rem;line-height:1.35}
   .lightbox{position:fixed;inset:0;z-index:80;background:rgba(6,32,71,.86);display:grid;place-items:center;padding:48px 24px}
   .lightbox[hidden]{display:none}
   .lightbox figure{margin:0;max-width:min(1080px,94vw)}
@@ -363,7 +353,6 @@
     .tl-item{padding-bottom:40px}
     .services-grid,.gallery{grid-template-columns:1fr 1fr}
     .gallery.photos{grid-template-columns:1fr 1fr}
-    .drawing-strip{grid-template-columns:repeat(2,1fr)}
   }
   @media (max-width:600px){
     section{padding:80px 0}
@@ -376,7 +365,6 @@
     .hero-photos{margin-top:8px;padding-bottom:46%}
     .hero-photos .photo{width:88%}
     .services-grid,.gallery,.gallery.photos,.choices,.row2{grid-template-columns:1fr}
-    .drawing-strip{grid-template-columns:repeat(2,1fr)}
     .gallery .photo .img{min-height:0}
     .gallery .photo:nth-child(1) .img{aspect-ratio:4/3;min-height:0}
     .gallery .photo:nth-child(1){grid-column:auto}
@@ -511,60 +499,6 @@
       <p class="intro">Photographs from the shop. Click one to see it larger.</p>
     </div>
     <div class="gallery photos" id="photoArchive"></div>
-    <div class="center drawings-head">
-      <span class="label">From the bench</span>
-      <p class="intro">A few of the rings.</p>
-    </div>
-    <div class="drawing-strip">
-      <figure class="photo vintage" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/bridal-sets.jpg" width="600" height="600" alt="Two oval diamond bridal sets, one white metal and one rose gold, on a black background" loading="lazy">
-        </div>
-        <figcaption>Oval bridal sets</figcaption>
-      </figure>
-      <figure class="photo vintage" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/halo-band.jpg" width="700" height="699" alt="A round diamond halo ring resting on a white gold wedding band" loading="lazy">
-        </div>
-        <figcaption>Halo and a band</figcaption>
-      </figure>
-      <figure class="photo vintage" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/gold-stack.jpg" width="700" height="700" alt="A round diamond engagement ring stacked with a diamond band on a gold wedding band" loading="lazy">
-        </div>
-        <figcaption>Round diamond, gold band</figcaption>
-      </figure>
-      <figure class="photo vintage" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/vintage-halo.jpg" width="700" height="700" alt="A vintage halo engagement ring on two white gold bands" loading="lazy">
-        </div>
-        <figcaption>Vintage halo</figcaption>
-      </figure>
-      <figure class="photo vintage wide" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/yellow-diamonds.jpg" width="682" height="328" alt="Three yellow diamond rings with diamond halos" loading="lazy">
-        </div>
-        <figcaption>Yellow diamonds</figcaption>
-      </figure>
-      <figure class="photo vintage wide" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/three-diamond-rings.jpg" width="700" height="337" alt="Three diamond rings: a cluster, an openwork marquise shape, and a cushion halo" loading="lazy">
-        </div>
-        <figcaption>Three diamond rings</figcaption>
-      </figure>
-      <figure class="photo vintage wide" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/three-shapes.jpg" width="700" height="288" alt="Three engagement rings with a round, a marquise, and an oval center" loading="lazy">
-        </div>
-        <figcaption>Round, marquise, and oval</figcaption>
-      </figure>
-      <figure class="photo vintage wide" tabindex="0" role="button">
-        <div class="img">
-          <img src="images/portfolio/three-bridal-sets.jpg" width="646" height="311" alt="Three diamond bridal sets: pear, cushion halo, and round with curved bands" loading="lazy">
-        </div>
-        <figcaption>Three bridal sets</figcaption>
-      </figure>
-    </div>
     <p class="gallery-note">Have an old photo of the shop, or a piece you bought here decades ago? <a href="mailto:pacejewelersinc@gmail.com">We'd love to see it.</a></p>
   </div>
 </section>
@@ -1142,7 +1076,7 @@ stack.querySelectorAll('.photo').forEach(fig => {
   });
 })();
 
-document.querySelectorAll('.timeline .photo, .gallery .photo, .drawing-strip .photo').forEach(fig => {
+document.querySelectorAll('.timeline .photo, .gallery .photo').forEach(fig => {
   fig.tabIndex = 0;
   fig.setAttribute('role','button');
   if(!fig.getAttribute('aria-label')){
