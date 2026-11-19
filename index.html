@@ -150,14 +150,12 @@
   .dropcap::first-letter{all:unset}
   .tl-slider{position:relative;left:50%;width:100vw;margin:28px 0 0 -50vw;background:transparent;color:#fff;outline:none}
   .tl-slider:focus-visible{outline:3px solid #9ec0ef;outline-offset:-6px}
-  .tl-viewport{position:relative;min-height:680px}
+  .tl-viewport{position:relative;min-height:720px}
   .tl-slide{position:absolute;inset:0;display:grid;place-items:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .55s ease,visibility .55s}
   .tl-slide.is-active{opacity:1;visibility:visible;z-index:1;pointer-events:auto}
-  .tl-bg{position:absolute;inset:0;overflow:hidden}
-  .tl-bg img{width:100%;height:100%;max-width:none;object-fit:cover;filter:grayscale(1) contrast(1.06) brightness(.72);transform:scale(1.06);-webkit-mask-image:radial-gradient(ellipse 46% 42% at 50% 50%, #000 38%, transparent 100%);mask-image:radial-gradient(ellipse 46% 42% at 50% 50%, #000 38%, transparent 100%)}
-  .tl-slide.is-active .tl-bg img{transform:scale(1);transition:transform 9s ease}
-  .tl-shade{position:absolute;inset:0;background:none}
-  .tl-slide.has-photo .tl-shade{background:radial-gradient(ellipse 50% 46% at 50% 50%, rgba(6,18,40,.45) 0%, transparent 68%)}
+  .tl-frame{display:block;width:min(760px,100%);margin:22px auto 0;padding:0;border:0;background:none;cursor:zoom-in}
+  .tl-frame img{width:auto;max-width:100%;height:auto;max-height:34vh;margin:0 auto;object-fit:contain;filter:grayscale(1) contrast(1.05)}
+  .tl-frame:focus-visible{outline:2px solid #fff;outline-offset:4px}
   .tl-copy{opacity:1}
   .tl-slide:not(.is-active) .tl-copy{opacity:0}
   .tl-slider.is-live .tl-slide.is-active .tl-copy{transition:opacity .28s ease .24s}
@@ -373,7 +371,8 @@
     .hero-photos{margin-top:12px;padding-bottom:38%}
     .hero-photos .photo{width:80%}
     .booking aside{position:static}
-    .tl-viewport{min-height:600px}
+    .tl-viewport{min-height:680px}
+    .tl-frame img{max-height:30vh}
     .tl-copy{width:min(1080px,calc(100% - 108px))}
     .services-grid,.gallery{grid-template-columns:1fr 1fr}
     .gallery.photos{grid-template-columns:1fr 1fr}
@@ -381,7 +380,8 @@
   @media (max-width:600px){
     section{padding:80px 0}
     .story{padding-bottom:56px}
-    .tl-viewport{min-height:560px}
+    .tl-viewport{min-height:640px}
+    .tl-frame img{max-height:26vh}
     .tl-copy{width:min(1080px,calc(100% - 16px));padding:28px 54px}
     .tl-year{font-size:clamp(3.1rem,16vw,4.6rem)}
     .tl-year.word{font-size:clamp(2.3rem,11vw,3.2rem)}
@@ -405,7 +405,7 @@
     .gallery .photo:nth-child(1){grid-row:auto}
   }
   @media (prefers-reduced-motion: reduce){
-    .tl-slide,.tl-slide.is-active .tl-bg img{transition:none}
+    .tl-slide{transition:none}
   }
 </style>
 </head>
@@ -1026,22 +1026,7 @@ if(total && timelineRoot){
     slide.className = 'tl-slide' + (i === 0 ? ' is-active' : '');
     slide.setAttribute('aria-label', (i + 1) + ' of ' + total + (item.year ? ', ' + item.year : '') + (item.title ? ', ' + item.title : ''));
     if(i !== 0){ slide.inert = true; slide.setAttribute('aria-hidden', 'true'); }
-    if(item.image){
-      slide.classList.add('has-photo');
-      const bg = document.createElement('div');
-      bg.className = 'tl-bg';
-      bg.setAttribute('aria-hidden', 'true');
-      const img = document.createElement('img');
-      img.src = item.image;
-      img.alt = '';
-      if(item.width && item.height && item.height > item.width) img.style.objectPosition = 'center 18%';
-      bg.appendChild(img);
-      slide.appendChild(bg);
-    }
-    const shade = document.createElement('div');
-    shade.className = 'tl-shade';
-    shade.setAttribute('aria-hidden', 'true');
-    slide.appendChild(shade);
+    if(item.image) slide.classList.add('has-photo');
     const copy = document.createElement('div');
     copy.className = 'tl-copy';
     const count = document.createElement('p');
@@ -1092,12 +1077,24 @@ if(total && timelineRoot){
       copy.appendChild(p);
     }
     if(item.image){
+      const fig = photoFigure(item);
+      fig.hidden = true;
+      const frame = document.createElement('button');
+      frame.type = 'button';
+      frame.className = 'tl-frame';
+      frame.setAttribute('aria-label', 'Open ' + (item.caption || item.title || 'the photograph'));
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.alt || item.caption || item.title || '';
+      if(item.width) img.width = item.width;
+      if(item.height) img.height = item.height;
+      frame.appendChild(img);
+      frame.addEventListener('click', () => openLightbox(fig));
+      copy.appendChild(frame);
       const open = document.createElement('button');
       open.type = 'button';
       open.className = 'tl-open';
       open.textContent = 'See the photograph';
-      const fig = photoFigure(item);
-      fig.hidden = true;
       open.addEventListener('click', () => openLightbox(fig));
       copy.appendChild(open);
       slide.appendChild(fig);
