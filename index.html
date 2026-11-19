@@ -159,6 +159,9 @@
   .tl-mark.word{font-family:var(--sans);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding-top:9px}
   .tl-body h3{font-size:1.35rem;margin:0 0 8px}
   .tl-body p{color:var(--ink-soft);max-width:36em}
+  .tl-source{margin-top:10px;font-size:.75rem}
+  .tl-source a{color:var(--accent);font-weight:600;text-decoration:none}
+  .tl-source a:hover{text-decoration:underline}
   .timeline .photo{margin-top:14px;width:168px;max-width:70%}
   .timeline .photo .img{aspect-ratio:4/3;height:auto;min-height:0;border-radius:12px;background:#fff;padding:6px;box-shadow:0 14px 28px -18px rgba(6,32,71,.5)}
   .timeline .photo.portrait .img{aspect-ratio:3/4}
@@ -998,6 +1001,21 @@ const timelineList = document.getElementById('timeline');
     const p = document.createElement('p');
     p.textContent = item.text;
     body.appendChild(p);
+  }
+  if(item.sources && item.sources.length){
+    const src = document.createElement('p');
+    src.className = 'tl-source';
+    src.append(item.sources.length > 1 ? 'Sources: ' : 'Source: ');
+    item.sources.forEach((s, i) => {
+      if(i) src.append(' · ');
+      const a = document.createElement('a');
+      a.href = s.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = s.name;
+      src.appendChild(a);
+    });
+    body.appendChild(src);
   }
   if(item.image) body.appendChild(photoFigure(item));
   li.appendChild(body);
