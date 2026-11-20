@@ -196,7 +196,7 @@
   .arc-nav.next{right:28px}
   .arc-nav:hover{background:rgba(255,255,255,.12)}
   .arc-nav:focus-visible{outline:2px solid #fff;outline-offset:3px}
-  .lightbox{position:fixed;inset:0;z-index:80;background:rgba(6,32,71,.86);display:grid;place-items:center;padding:48px 24px}
+  .lightbox{position:fixed;inset:0;z-index:80;background:#03101f;display:grid;place-items:center;padding:48px 24px}
   .lightbox[hidden]{display:none}
   .lightbox figure{margin:0;max-width:min(1080px,94vw)}
   .lightbox img{max-height:78vh;width:auto;max-width:100%;margin:0 auto;object-fit:contain;border-radius:18px;background:#fff;box-shadow:0 30px 80px -30px rgba(0,0,0,.6)}
