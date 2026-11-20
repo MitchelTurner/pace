@@ -72,7 +72,7 @@
         <li><a href="#story">Our Story</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="financing/">Financing</a></li>
-        <li><a href="#archive">The Archive</a></li>
+        <li><a href="#team">Meet the Team</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#visit">Visit</a></li>
         <li><a href="#book" class="btn sm">Book Appointment</a></li>
@@ -164,17 +164,17 @@
   </div>
 </section>
 
-<!-- ================= ARCHIVE ================= -->
-<section class="archive" id="archive">
+<!-- ================= TEAM ================= -->
+<section class="archive" id="team">
   <div class="wrap">
     <div class="center">
-      <span class="label">From the family album</span>
-      <h2>The Archive</h2>
+      <span class="label">In the shop</span>
+      <h2>Meet the Team</h2>
       <div class="ornament">◆</div>
-      <p class="intro">Photographs from the shop. Click the front one to see it larger.</p>
+      <p class="intro">The family at the counter, and the people who work beside them.</p>
     </div>
-    <div class="arc" id="photoArchive" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Shop photographs"></div>
-    <p class="gallery-note">Have an old photo of the shop, or a piece you bought here decades ago? <a href="mailto:pacejewelersinc@gmail.com">We'd love to see it.</a></p>
+    <div class="arc" id="photoArchive" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The team"></div>
+    <p class="gallery-note">Come in Monday through Friday, 10:00 to 5:30, and meet them at the counter.</p>
   </div>
 </section>
 
@@ -368,6 +368,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.15.0/dist/maplibre-gl-csp.js"></script>
 <script src="timeline.js"></script>
+<script src="team.js"></script>
 <script>
 /* ============================================================
    Requests go to the shop email. If that send does not go through,
@@ -802,7 +803,7 @@ if(total && timelineRoot){
   viewport.addEventListener('pointercancel', () => { swipe = null; });
 }
 const photoArchive = document.getElementById('photoArchive');
-const archivePhotos = (window.PACE_TIMELINE || []).filter(item => item.image);
+const archivePhotos = window.PACE_TEAM || [];
 let arcIndex = 0;
 if(photoArchive && archivePhotos.length){
   const stage = document.createElement('div');
@@ -812,11 +813,19 @@ if(photoArchive && archivePhotos.length){
   status.setAttribute('aria-live', 'polite');
   const cards = archivePhotos.map((item, i) => {
     const fig = document.createElement('figure');
-    fig.className = 'arc-card' + (item.width && item.height && item.height > item.width ? ' portrait' : '');
-    const img = document.createElement('img');
-    img.src = item.image;
-    img.alt = item.alt || item.caption || item.title || '';
-    if(item.full) img.setAttribute('data-full', item.full);
+    fig.className = 'arc-card' + (item.image ? '' : ' no-photo');
+    if(item.image){
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.alt || item.name || '';
+      fig.appendChild(img);
+    } else {
+      const mark = document.createElement('span');
+      mark.className = 'arc-mark';
+      mark.textContent = item.initials || '';
+      mark.setAttribute('aria-hidden', 'true');
+      fig.appendChild(mark);
+    }
     const veil = document.createElement('span');
     veil.className = 'arc-veil';
     veil.setAttribute('aria-hidden', 'true');
@@ -827,18 +836,18 @@ if(photoArchive && archivePhotos.length){
     copy.className = 'arc-copy';
     const title = document.createElement('span');
     title.className = 'arc-title';
-    title.textContent = item.title || item.caption || '';
+    title.textContent = item.name || '';
     const count = document.createElement('span');
     count.className = 'arc-count';
-    count.textContent = String(i + 1).padStart(2, '0') + ' – ' + String(archivePhotos.length).padStart(2, '0');
+    count.textContent = item.role || '';
     copy.append(title, count);
     const cap = document.createElement('figcaption');
     cap.hidden = true;
-    cap.textContent = item.caption || item.title || '';
-    fig.append(img, veil, frame, copy, cap);
+    cap.textContent = [item.name, item.role].filter(Boolean).join(', ');
+    fig.append(veil, frame, copy, cap);
     fig.addEventListener('click', () => {
       if(arcDragged){ arcDragged = false; return; }
-      if(i === arcIndex) openLightbox(fig);
+      if(i === arcIndex){ if(item.image) openLightbox(fig); }
       else showArc(i);
     });
     return fig;
@@ -847,7 +856,7 @@ if(photoArchive && archivePhotos.length){
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'arc-nav ' + (dir < 0 ? 'prev' : 'next');
-    btn.setAttribute('aria-label', dir < 0 ? 'Previous photograph' : 'Next photograph');
+    btn.setAttribute('aria-label', dir < 0 ? 'Previous person' : 'Next person');
     btn.innerHTML = dir < 0
       ? '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M14.5 6 8 12l6.5 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
       : '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9.5 6 16 12l-6.5 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -872,10 +881,11 @@ if(photoArchive && archivePhotos.length){
       card.style.zIndex = String(12 - Math.abs(offset));
       const rot = active ? -3 : offset * -tilt;
       card.style.transform = 'translate(-50%, -52%) translateX(' + (offset * spread) + '%) rotate(' + rot + 'deg) scale(' + (active ? 1 : 0.84) + ')';
-      card.setAttribute('aria-label', (active ? 'Open ' : 'Show ') + (archivePhotos[i].title || archivePhotos[i].caption || 'photograph'));
+      const person = archivePhotos[i];
+      card.setAttribute('aria-label', (active && person.image ? 'Open photo of ' : 'Show ') + (person.name || 'person'));
     });
     const item = archivePhotos[arcIndex];
-    status.textContent = [item.title || item.caption, (arcIndex + 1) + ' of ' + archivePhotos.length].filter(Boolean).join('. ') + '.';
+    status.textContent = [item.name, item.role, (arcIndex + 1) + ' of ' + archivePhotos.length].filter(Boolean).join('. ') + '.';
   }
   showArc(0);
   photoArchive.addEventListener('keydown', e => {
