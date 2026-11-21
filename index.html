@@ -173,7 +173,7 @@
       <div class="ornament">◆</div>
       <p class="intro">The family at the counter, and the people who work beside them.</p>
     </div>
-    <div class="arc" id="photoArchive" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The team"></div>
+    <div class="acc" id="photoArchive" tabindex="0" role="region" aria-label="The team"></div>
     <p class="gallery-note">Come in Monday through Friday, 10:00 to 5:30, and meet them at the counter.</p>
   </div>
 </section>
@@ -616,7 +616,7 @@ const lightboxImg = lightbox.querySelector('img');
 const lightboxCap = lightbox.querySelector('figcaption');
 function openLightbox(fig){
   const img = fig.querySelector('img');
-  const cap = fig.querySelector('figcaption');
+  const cap = fig.querySelector('figcaption, .acc-caption');
   lightboxImg.src = img.getAttribute('data-full') || img.currentSrc || img.src;
   lightboxImg.alt = img.alt;
   lightboxCap.textContent = cap ? cap.textContent : '';
@@ -804,99 +804,65 @@ if(total && timelineRoot){
 }
 const photoArchive = document.getElementById('photoArchive');
 const archivePhotos = window.PACE_TEAM || [];
+const panelTones = ['#c47a4a', '#d47868', '#6e8494', '#b08968', '#8a7e72'];
 let arcIndex = 0;
 if(photoArchive && archivePhotos.length){
-  const stage = document.createElement('div');
-  stage.className = 'arc-stage';
   const status = document.createElement('p');
   status.className = 'sr-only';
   status.setAttribute('aria-live', 'polite');
-  const cards = archivePhotos.map((item, i) => {
-    const fig = document.createElement('figure');
-    fig.className = 'arc-card' + (item.image ? '' : ' no-photo');
+  const panels = archivePhotos.map((item, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'acc-panel';
+    if(!item.image) btn.style.background = panelTones[i % panelTones.length];
     if(item.image){
       const img = document.createElement('img');
       img.src = item.image;
       img.alt = item.alt || item.name || '';
-      fig.appendChild(img);
-    } else {
+      btn.appendChild(img);
+    } else if(item.initials){
       const mark = document.createElement('span');
-      mark.className = 'arc-mark';
-      mark.textContent = item.initials || '';
+      mark.className = 'acc-mark';
+      mark.textContent = item.initials;
       mark.setAttribute('aria-hidden', 'true');
-      fig.appendChild(mark);
+      btn.appendChild(mark);
     }
-    const veil = document.createElement('span');
-    veil.className = 'arc-veil';
-    veil.setAttribute('aria-hidden', 'true');
-    const frame = document.createElement('span');
-    frame.className = 'arc-frame';
-    frame.setAttribute('aria-hidden', 'true');
     const copy = document.createElement('span');
-    copy.className = 'arc-copy';
+    copy.className = 'acc-copy';
     const title = document.createElement('span');
-    title.className = 'arc-title';
+    title.className = 'acc-title';
     title.textContent = item.name || '';
-    const count = document.createElement('span');
-    count.className = 'arc-count';
-    count.textContent = String(i + 1).padStart(2, '0') + ' – ' + String(archivePhotos.length).padStart(2, '0');
-    copy.append(title, count);
-    const cap = document.createElement('figcaption');
+    const meta = document.createElement('span');
+    meta.className = 'acc-meta';
+    const index = document.createElement('span');
+    index.className = 'acc-index';
+    index.textContent = String(i + 1).padStart(2, '0') + ' /';
+    const role = document.createElement('span');
+    role.className = 'acc-role';
+    role.textContent = item.role || '';
+    meta.append(index, role);
+    copy.append(title, meta);
+    const cap = document.createElement('span');
     cap.hidden = true;
+    cap.className = 'acc-caption';
     cap.textContent = [item.name, item.role].filter(Boolean).join(', ');
-    fig.append(veil, frame, copy, cap);
-    fig.addEventListener('click', () => {
-      if(arcDragged){ arcDragged = false; return; }
-      if(i === arcIndex){ if(item.image) openLightbox(fig); }
+    btn.append(copy, cap);
+    btn.addEventListener('click', () => {
+      if(i === arcIndex){ if(item.image) openLightbox(btn); }
       else showArc(i);
     });
-    return fig;
-  });
-  const arrow = (dir) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'arc-nav ' + (dir < 0 ? 'prev' : 'next');
-    btn.setAttribute('aria-label', dir < 0 ? 'Previous person' : 'Next person');
-    btn.innerHTML = dir < 0
-      ? '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M14.5 6 8 12l6.5 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-      : '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9.5 6 16 12l-6.5 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    btn.addEventListener('click', () => showArc(arcIndex + dir));
     return btn;
-  };
-  cards.forEach(card => stage.appendChild(card));
-  const controls = document.createElement('div');
-  controls.className = 'arc-controls';
-  controls.append(arrow(-1), arrow(1));
-  photoArchive.append(stage, controls, status);
+  });
+  panels.forEach(panel => photoArchive.appendChild(panel));
+  photoArchive.appendChild(status);
   function showArc(next){
     arcIndex = (next % archivePhotos.length + archivePhotos.length) % archivePhotos.length;
-    const wide = window.matchMedia('(min-width:700px)').matches;
-    const place = {
-      '0': wide ? [0, 4, -8, 1] : [0, 2, -6, 1],
-      '-1': wide ? [-62, -5, -18, 1] : [-48, -2, -14, 0.98],
-      '1': wide ? [66, 7, 14, 1] : [50, 4, 12, 0.98]
-    };
-    cards.forEach((card, i) => {
-      let offset = i - arcIndex;
-      const n = cards.length;
-      if(offset > n / 2) offset -= n;
-      if(offset < -n / 2) offset += n;
-      const active = offset === 0;
-      card.classList.toggle('is-active', active);
-      const key = String(Math.max(-1, Math.min(1, offset)));
-      const spot = place[String(offset)] || place[key];
-      const far = Math.abs(offset) > 1;
-      card.style.zIndex = String(active ? 6 : 4 - Math.abs(offset));
-      card.style.opacity = far ? '0' : '1';
-      card.style.pointerEvents = far ? 'none' : 'auto';
-      const dir = offset < 0 ? -1 : 1;
-      const x = far ? dir * (wide ? 72 : 58) : spot[0];
-      const y = far ? 12 : spot[1];
-      const rot = far ? dir * 22 : spot[2];
-      const scale = far ? 0.9 : spot[3];
-      card.style.transform = 'translate(-50%, -50%) translate(' + x + '%, ' + y + '%) rotate(' + rot + 'deg) scale(' + scale + ')';
+    panels.forEach((panel, i) => {
+      const active = i === arcIndex;
       const person = archivePhotos[i];
-      card.setAttribute('aria-label', (active && person.image ? 'Open photo of ' : 'Show ') + (person.name || 'person'));
+      panel.classList.toggle('is-active', active);
+      panel.setAttribute('aria-expanded', active ? 'true' : 'false');
+      panel.setAttribute('aria-label', (active && person.image ? 'Open photo of ' : 'Show ') + (person.name || 'person'));
     });
     const item = archivePhotos[arcIndex];
     status.textContent = [item.name, item.role, (arcIndex + 1) + ' of ' + archivePhotos.length].filter(Boolean).join('. ') + '.';
@@ -906,23 +872,6 @@ if(photoArchive && archivePhotos.length){
     if(e.key === 'ArrowRight'){ e.preventDefault(); showArc(arcIndex + 1); }
     else if(e.key === 'ArrowLeft'){ e.preventDefault(); showArc(arcIndex - 1); }
   });
-  let swipe = null;
-  let arcDragged = false;
-  stage.addEventListener('pointerdown', e => {
-    if(e.target.closest('button')) return;
-    swipe = { x: e.clientX, id: e.pointerId };
-  });
-  stage.addEventListener('pointerup', e => {
-    if(!swipe || swipe.id !== e.pointerId) return;
-    const dx = e.clientX - swipe.x;
-    swipe = null;
-    if(Math.abs(dx) > 50){
-      arcDragged = true;
-      showArc(arcIndex + (dx > 0 ? -1 : 1));
-    }
-  });
-  stage.addEventListener('pointercancel', () => { swipe = null; });
-  window.addEventListener('resize', () => showArc(arcIndex));
 }
 
 const stack = document.getElementById('heroStack');
