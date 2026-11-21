@@ -839,7 +839,7 @@ if(photoArchive && archivePhotos.length){
     title.textContent = item.name || '';
     const count = document.createElement('span');
     count.className = 'arc-count';
-    count.textContent = item.role || '';
+    count.textContent = String(i + 1).padStart(2, '0') + ' – ' + String(archivePhotos.length).padStart(2, '0');
     copy.append(title, count);
     const cap = document.createElement('figcaption');
     cap.hidden = true;
@@ -864,13 +864,18 @@ if(photoArchive && archivePhotos.length){
     return btn;
   };
   cards.forEach(card => stage.appendChild(card));
-  stage.append(arrow(-1), arrow(1));
-  photoArchive.append(stage, status);
+  const controls = document.createElement('div');
+  controls.className = 'arc-controls';
+  controls.append(arrow(-1), arrow(1));
+  photoArchive.append(stage, controls, status);
   function showArc(next){
     arcIndex = (next % archivePhotos.length + archivePhotos.length) % archivePhotos.length;
     const wide = window.matchMedia('(min-width:700px)').matches;
-    const spread = wide ? 40 : 30;
-    const tilt = wide ? 13 : 10;
+    const place = {
+      '0': wide ? [0, 4, -8, 1] : [0, 2, -6, 1],
+      '-1': wide ? [-62, -5, -18, 1] : [-48, -2, -14, 0.98],
+      '1': wide ? [66, 7, 14, 1] : [50, 4, 12, 0.98]
+    };
     cards.forEach((card, i) => {
       let offset = i - arcIndex;
       const n = cards.length;
@@ -878,9 +883,18 @@ if(photoArchive && archivePhotos.length){
       if(offset < -n / 2) offset += n;
       const active = offset === 0;
       card.classList.toggle('is-active', active);
-      card.style.zIndex = String(12 - Math.abs(offset));
-      const rot = active ? -3 : offset * -tilt;
-      card.style.transform = 'translate(-50%, -52%) translateX(' + (offset * spread) + '%) rotate(' + rot + 'deg) scale(' + (active ? 1 : 0.84) + ')';
+      const key = String(Math.max(-1, Math.min(1, offset)));
+      const spot = place[String(offset)] || place[key];
+      const far = Math.abs(offset) > 1;
+      card.style.zIndex = String(active ? 6 : 4 - Math.abs(offset));
+      card.style.opacity = far ? '0' : '1';
+      card.style.pointerEvents = far ? 'none' : 'auto';
+      const dir = offset < 0 ? -1 : 1;
+      const x = far ? dir * (wide ? 72 : 58) : spot[0];
+      const y = far ? 12 : spot[1];
+      const rot = far ? dir * 22 : spot[2];
+      const scale = far ? 0.9 : spot[3];
+      card.style.transform = 'translate(-50%, -50%) translate(' + x + '%, ' + y + '%) rotate(' + rot + 'deg) scale(' + scale + ')';
       const person = archivePhotos[i];
       card.setAttribute('aria-label', (active && person.image ? 'Open photo of ' : 'Show ') + (person.name || 'person'));
     });

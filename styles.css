@@ -154,9 +154,11 @@
   .brands{margin-top:36px;text-align:center;color:var(--ink-soft);font-size:.9rem}
 
   /* archive */
-  .archive{background:var(--dark);color:#d5e2f2}
-  .archive h2{color:#fff}
-  .archive .intro{color:#a9bdd6;max-width:600px;margin:20px auto 0}
+  .archive{background:#eceae6;color:var(--ink);overflow-x:clip}
+  .archive h2{color:var(--ink)}
+  .archive .intro{color:var(--ink-soft);max-width:600px;margin:20px auto 0}
+  .archive .gallery-note{color:var(--ink-soft)}
+  .archive .gallery-note a{color:var(--accent-deep)}
   .gallery{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:64px;min-width:0}
   .gallery .photo{min-width:0;max-width:100%;cursor:zoom-in}
   .gallery .photo .img{width:100%}
@@ -174,28 +176,27 @@
   .gallery.photos .photo,.gallery.photos .photo:nth-child(1){grid-column:auto;grid-row:auto;display:block}
   .gallery.photos .photo .img,.gallery.photos .photo:nth-child(1) .img{aspect-ratio:4/3;min-height:0;height:auto;flex:none}
   .gallery.photos .photo.portrait .img img{object-position:center top}
-  .archive{overflow-x:clip}
   .arc{position:relative;left:50%;width:100vw;margin:8px 0 0 -50vw;outline:none}
-  .arc:focus-visible{outline:3px solid #9ec0ef;outline-offset:-6px}
-  .arc-stage{position:relative;height:680px}
-  .arc-card{position:absolute;left:50%;top:50%;width:min(420px,38vw);aspect-ratio:3/4;margin:0;border-radius:2px;overflow:hidden;background:#10233f;box-shadow:0 34px 60px -28px rgba(0,0,0,.72);cursor:pointer;transition:transform .6s cubic-bezier(.22,.7,.3,1)}
+  .arc:focus-visible{outline:3px solid var(--accent);outline-offset:-6px}
+  .arc-stage{position:relative;height:820px;overflow:hidden}
+  .arc-card{position:absolute;left:50%;top:48%;width:min(560px,42vw);aspect-ratio:3/4;margin:0;border-radius:2px;overflow:hidden;background:#ddd8d0;box-shadow:0 28px 50px -24px rgba(40,32,24,.45);cursor:pointer;transition:transform .65s cubic-bezier(.22,.7,.3,1),opacity .45s}
   .arc-card img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  .arc-card.portrait img{object-position:center 16%}
-  .arc-veil,.arc-frame,.arc-copy{position:absolute;pointer-events:none}
-  .arc-veil{inset:0;background:linear-gradient(to top, rgba(8,16,32,.55), rgba(8,16,32,0) 46%);opacity:0;transition:opacity .35s}
-  .arc-frame{inset:20px;border:1.5px dashed rgba(255,255,255,.9);border-radius:26px;opacity:0}
-  .arc-copy{left:42px;right:36px;bottom:40px;color:#fff;text-align:left;opacity:0;transition:opacity .35s}
-  .arc-card.is-active .arc-veil,.arc-card.is-active .arc-frame,.arc-card.is-active .arc-copy{opacity:1}
-  .arc-title{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,4vw,3.4rem);line-height:.95;text-shadow:0 2px 16px rgba(0,0,0,.45)}
-  .arc-count{display:block;margin-top:12px;font-family:var(--sans);font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
-  .arc-card.no-photo{background:linear-gradient(165deg,#245a9c 0%,#062047 72%)}
-  .arc-mark{position:absolute;inset:0;display:grid;place-items:center;padding-top:12%;font-family:var(--display);font-size:clamp(3.4rem,6vw,5.2rem);color:rgba(255,255,255,.9);letter-spacing:.04em}
-  .arc-card.is-active .arc-mark{opacity:.28}
-  .arc-nav{position:absolute;top:50%;z-index:30;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer}
-  .arc-nav.prev{left:28px}
-  .arc-nav.next{right:28px}
-  .arc-nav:hover{background:rgba(255,255,255,.12)}
-  .arc-nav:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .arc-frame,.arc-copy{position:absolute;pointer-events:none}
+  .arc-frame{inset:7% 8%;border:1.5px dashed rgba(255,255,255,.92);border-radius:34px;opacity:0}
+  .arc-copy{left:12%;top:9%;right:16%;color:#fff;text-align:left;opacity:0;transition:opacity .35s}
+  .arc-card.is-active .arc-frame,.arc-card.is-active .arc-copy{opacity:1}
+  .arc-title{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,4.6vw,4.2rem);line-height:.95;text-shadow:0 1px 2px rgba(0,0,0,.55),0 10px 24px rgba(0,0,0,.35)}
+  .arc-count{display:inline-block;margin-top:14px;padding:3px 9px 4px;border:1px solid rgba(255,255,255,.9);border-radius:8px;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.04em;text-shadow:none}
+  .arc-card.no-photo{background:#e4ddd2}
+  .arc-card.no-photo .arc-frame{border-color:rgba(16,35,63,.45)}
+  .arc-card.no-photo .arc-title{color:var(--ink);text-shadow:none}
+  .arc-card.no-photo .arc-count{color:var(--ink);border-color:rgba(16,35,63,.4)}
+  .arc-mark{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:clamp(3.2rem,6vw,5rem);color:rgba(16,35,63,.28);letter-spacing:.04em}
+  .arc-card.is-active .arc-mark{opacity:.2}
+  .arc-controls{display:flex;justify-content:center;gap:12px;margin-top:4px}
+  .arc-nav{position:static;width:44px;height:44px;border-radius:50%;border:1px solid rgba(16,35,63,.35);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer}
+  .arc-nav:hover{background:#fff}
+  .arc-nav:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .lightbox{position:fixed;inset:0;z-index:80;background:#03101f;display:grid;place-items:center;padding:48px 24px}
   .lightbox[hidden]{display:none}
   .lightbox figure{margin:0;max-width:min(1080px,94vw)}
@@ -375,13 +376,10 @@
     .brand .logo{height:32px}
     header .est-mark{display:none}
     .gallery .photo:nth-child(1){grid-row:auto}
-    .arc-card{width:min(280px,72vw)}
-    .arc-copy{left:28px;right:24px;bottom:28px}
-    .arc-frame{inset:14px;border-radius:18px}
-    .arc-stage{height:560px}
-    .arc-nav{top:auto;bottom:0;width:36px;height:36px;margin-top:0}
-    .arc-nav.prev{left:18px}
-    .arc-nav.next{right:18px}
+    .arc-stage{height:520px}
+    .arc-card{width:min(280px,74vw);top:46%}
+    .arc-title{font-size:2.3rem}
+    .arc-nav{width:36px;height:36px}
   }
   @media (prefers-reduced-motion: reduce){
     .tl-slide,.arc-card,.arc-veil,.arc-copy{transition:none}
